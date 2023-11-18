@@ -1,4 +1,4 @@
-name: myenv
+name: spx_industry_mom
 channels:
   - defaults
   - conda-forge
