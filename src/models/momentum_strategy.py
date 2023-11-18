@@ -163,15 +163,15 @@ class MomentumStrategy:
                 weights_long[month, :] = weights_long[month-1, :]
                 weights_short[month, :] = weights_short[month-1, :]
 
-        # Ensure the sum of absolute weights equals one
-        total_long_weight = np.sum(np.abs(weights_long[month, :]))
-        total_short_weight = np.sum(np.abs(weights_short[month, :]))
+            # Ensure the sum of absolute weights equals one
+            total_long_weight = np.sum(np.abs(weights_long[month, :]))
+            total_short_weight = np.sum(np.abs(weights_short[month, :]))
 
-        weights_long[month, :] /= total_long_weight
-        weights_short[month, :] /= total_short_weight
+            weights_long[month, :] /= total_long_weight
+            weights_short[month, :] /= total_short_weight
 
-        turnover_long[month], _ = self.compute_turnover(weights_long[month-1, :], weights_long[month, :], returns_m[month-1, :])
-        turnover_short[month], _ = self.compute_turnover(weights_short[month-1, :], weights_short[month, :], returns_m[month-1, :])
+            turnover_long[month], _ = self.compute_turnover(weights_long[month-1, :], weights_long[month, :], returns_m[month-1, :])
+            turnover_short[month], _ = self.compute_turnover(weights_short[month-1, :], weights_short[month, :], returns_m[month-1, :])
 
         totalReturnsLong = np.nansum(weights_long * returns_m, axis=1)
         totalReturnsShort = np.nansum(weights_short * returns_m, axis=1)
