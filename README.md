@@ -3,6 +3,15 @@ Industry Momentum
 
 Can Industry Momentum Outperform the SPXT
 
+Requirements
+==============================
+
+First, environment variable PROJECT_ROOT must point to the project folder; you can set it in the .env file, and python will rely on python-dotenv to set it. Please: 
+
+- Name the .env file "environment_variables.env"
+- Store the environment_variables.env in the notebooks folder
+
+
 Project Organization
 ------------
 
