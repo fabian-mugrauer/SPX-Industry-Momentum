@@ -18,14 +18,17 @@ def process_data(dates_dateformat, Sectors, Industry_Groups, SPXT, Rf):
 
     # Process returns
     Sectors_returns_d = Sectors.pct_change().iloc[1:]
+    Sectors_returns_m = data_processor.aggregateReturns(Sectors_returns_d, numericDate_d, 2)
     Industry_Groups_returns_d = Industry_Groups.pct_change().iloc[1:]
-    returns_SPX = SPXT.pct_change().iloc[1:]
-    returns_SPX_monthly = data_processor.aggregateReturns(returns_SPX, numericDate_d, 2)
+    Industry_Groups_returns_m = data_processor.aggregateReturns(Industry_Groups_returns_d, numericDate_d, 2)
+    SPXT_returns_d = SPXT.pct_change().iloc[1:]
+    SPXT_returns_m = data_processor.aggregateReturns(SPXT_returns_d, numericDate_d, 2)
+
     
     # Process Rf
     rf_d_unadjusted = Rf / 100
     rf_d = data_processor.adjust_interest_rates(rf_d_unadjusted, numericDate_d)
     rf_d_monthly = data_processor.aggregateReturns(rf_d, numericDate_d, 2)
 
-    return dates_datetime, numericDate_d, firstDayList, lastDayList, dates4plot, Sectors_returns_d, Industry_Groups_returns_d, returns_SPX, returns_SPX_monthly, rf_d_unadjusted, rf_d, rf_d_monthly
+    return dates_datetime, numericDate_d, firstDayList, lastDayList, dates4plot, Sectors_returns_d, Sectors_returns_m, Industry_Groups_returns_d, Industry_Groups_returns_m, SPXT_returns_d, SPXT_returns_m, rf_d_unadjusted, rf_d, rf_d_monthly
 
