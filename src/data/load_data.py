@@ -4,7 +4,7 @@ import pandas as pd
 def load_data(file_path, file_name):
     # Load the file
     Data_file_path = os.path.join(file_path, file_name)
-    df = pd.read_csv(Data_file_path, header=None)
+    df = pd.read_csv(Data_file_path)
 
 
     # Extract the columns into separate DataFrames
@@ -30,6 +30,13 @@ def load_data(file_path, file_name):
     Sectors = Sectors.reset_index(drop=True)
     Rf = Rf.reset_index(drop=True)
     Industry_Groups = Industry_Groups.reset_index(drop=True)
+
+    # Make sure that numbers are numeric
+
+    SPXT = SPXT.apply(pd.to_numeric, errors='coerce')
+    Sectors = Sectors.apply(pd.to_numeric, errors='coerce')
+    Rf = Rf.apply(pd.to_numeric, errors='coerce')
+    Industry_Groups = Industry_Groups.apply(pd.to_numeric, errors='coerce')
 
     # Return data frames
     return dates_dateformat, SPXT, Sectors, Rf, Industry_Groups
