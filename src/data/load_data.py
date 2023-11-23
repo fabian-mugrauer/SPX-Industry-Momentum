@@ -1,12 +1,11 @@
 import os
 import pandas as pd
 
-def load_data(file_path, Excel_file_name):
-    # Load the Excel file
-    Excel_file_path = os.path.join(file_path, Excel_file_name)
-    xls = pd.ExcelFile(Excel_file_path)
-    sheet_name = xls.sheet_names[0]
-    df = xls.parse(sheet_name)
+def load_data(file_path, file_name):
+    # Load the file
+    Data_file_path = os.path.join(file_path, file_name)
+    df = pd.read_csv(Data_file_path, header=None)
+
 
     # Extract the columns into separate DataFrames
     dates_dateformat = df.iloc[6:, 0:1]
