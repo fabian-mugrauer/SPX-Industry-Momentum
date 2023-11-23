@@ -143,11 +143,11 @@ def summarizePerformance(xsReturns, Rf, factorXsReturns, annualizationFactor, st
 # Import the Function to load the Data
 from load_data import load_data
 
-# Define which Excel to Load
-Excel_file_name = 'Bloomberg_Download.xlsx'
+# Define which File to Load
+file_name = 'Bloomberg_Download.csv'
 
 # Load the Data
-dates_dateformat, SPXT, Sectors, Rf, Industry_Groups = load_data(file_path, Excel_file_name)
+dates_dateformat, SPXT, Sectors, Rf, Industry_Groups = load_data(file_path, file_name)
 
 # %% [markdown]
 # Process the Data
