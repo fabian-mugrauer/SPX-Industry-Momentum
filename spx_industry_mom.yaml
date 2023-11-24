@@ -72,3 +72,4 @@ dependencies:
   - zstd=1.5.5=hc035e20_0
   - python-dotenv=1.0.0
   - ipykernel
+  - joblib
