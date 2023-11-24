@@ -3,7 +3,7 @@ import matplotlib.dates as mdates
 import seaborn as sns
 import numpy as np
 
-class graphs:
+class Visualizer:
     def __init__(self):
         # Initialization can be used to set up any necessary properties or default values
         pass
@@ -68,4 +68,22 @@ class graphs:
 
         # Display the plot
         plt.tight_layout()
+        plt.show()
+
+    def plot_robustness_check(self, check_range, sharp_ratios, check_type, line_width=2, color='blue'):
+        """
+        Plots the results of a robustness check.
+
+        Parameters:
+        - check_range (range): The range of values used in the robustness check.
+        - sharp_ratios (list or array-like): The calculated Sharp Ratios for each value in the check range.
+        - check_type (str): The type of robustness check ('lookback', 'investment_horizon', 'holdings').
+        - line_width (int, optional): The width of the line in the plot. Default is 2.
+        - color (str, optional): The color of the line in the plot. Default is 'blue'.
+        """
+        plt.figure()
+        plt.plot(check_range, sharp_ratios, linewidth=line_width, color=color)
+        plt.xlabel(check_type.replace("_", " "))
+        plt.ylabel("Sharpe Ratio")
+        plt.title(f"Robustness Check: {check_type.replace('_', ' ').title()}")
         plt.show()
