@@ -1,8 +1,9 @@
 import numpy as np
 from scipy.stats import skew, kurtosis
 from prettytable import PrettyTable
+from src.models.momentum_strategy import MomentumStrategy  # Import the MomentumStrategy class
 
-class PerformanceSummarizer:
+class EvaluateStrategy:
     @staticmethod
     def summarize_performance(xsReturns, Rf, factorXsReturns, annualizationFactor, startM):
         """
@@ -91,3 +92,41 @@ class PerformanceSummarizer:
         x.add_row(["alphaArithmetic", alphaArithmetic])
 
         return (ArithmAvgTotalReturn, ArithmAvgXsReturn, StdXsReturns, SharpeArithmetic, MinXsReturn, MaxXsReturn, SkewXsReturn, KurtXsReturn, alphaArithmetic, tvaluealpha, betas, x)
+    
+    def perform_robustness_check(momentum, check_type, check_range, Sectors_returns_m, rf_d_monthly, SPXT_returns_m, lookback_period_end, startMonth, nLong, nShort, trx_cost, holding_period):
+        """
+        Perform robustness checks for different parameters.
+
+        Parameters:
+        momentum (MomentumStrategy): An instance of MomentumStrategy to use its backtest_momentum method.
+        check_type (str): Type of check ('lookback', 'investment_horizon', 'holdings').
+        check_range (range): Range of values to iterate over for the specified check.
+        [Other parameters]
+
+        Returns:
+        list: A list of Sharp Ratios for each value in the check range.
+        """
+        sharpRatio_loop = [0] * len(check_range)
+
+        for i, value in enumerate(check_range):
+            if check_type == 'lookback':
+                lb_period = value
+                inv_horizon = holding_period
+                holdings = nLong
+            elif check_type == 'investment_horizon':
+                lb_period = 9  # or some fixed value
+                inv_horizon = value
+                holdings = nLong
+            elif check_type == 'holdings':
+                lb_period = 9  # or some fixed value
+                inv_horizon = holding_period
+                holdings = value
+            else:
+                raise ValueError("Invalid check type")
+
+            xsReturns, _, _ = momentum.backtest_momentum(Sectors_returns_m, rf_d_monthly, lb_period, lookback_period_end, inv_horizon, startMonth, holdings, nShort, trx_cost)
+            _, _, _, sharpRatio, _, _, _, _, _, _, _, _ = EvaluateStrategy.summarize_performance(xsReturns, rf_d_monthly, SPXT_returns_m, 12, startMonth)
+
+            sharpRatio_loop[i] = sharpRatio
+
+        return sharpRatio_loop
