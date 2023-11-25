@@ -16,10 +16,27 @@ We provide a fully replicable code including the relevant data to replicate our 
 Requirements
 ==============================
 
-First, environment variable PROJECT_ROOT must point to the project folder; you can set it in the .env file, and python will rely on python-dotenv to set it. Please: 
+In a first step. please follow these 3 steps to replicate our code:
 
-- Name the .env file "environment_variables.env"
-- Store the environment_variables.env in the notebooks folder
+1. Environment variable `PROJECT_ROOT` must point to the project folder; you can set it in the .env file, and python will rely on `python-dotenv` to set it. Please: 
+
+    - Name the .env file "environment_variables.env"
+    - Store the environment_variables.env in the notebooks folder
+
+2. Please install the following versions and channels of mamba and conda to recreate the virtual environment in 3.:
+    - Mamba 1.4.2
+    - Conda 23.3.1
+      - Channel: defaults
+      - Channel: conda-forge
+3. Please `cd` into the SPX-Industry-Momentum folder inside your project folder and recreate and activate the virtual environment using mamba
+   ```bash
+    mamba env create -f spx_industry_mom.yaml
+    ```
+   ```bash
+    mamba activate spx_industry_mom
+    ```
+
+ Now, [SPX_Industry_Momentum](notebooks/SPX_Industry_Momentum.ipynb) is runnable and replicates all our results.
 
 
 
