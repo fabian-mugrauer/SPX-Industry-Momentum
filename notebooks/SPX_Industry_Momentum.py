@@ -1,5 +1,5 @@
 # %% [markdown]
-# Import Packages
+# Import packages
 
 # %%
 import numpy as np
@@ -125,13 +125,13 @@ sharpe_ratios_lookback = EvaluateStrategy.perform_robustness_check(
     SPXT_returns_m, lookback_period_end, startMonth, nLong, nShort, trx_cost, holding_period
 )
 
-sharpe_ratios_lookback = EvaluateStrategy.perform_robustness_check(
+sharpe_ratios_lookback_IG = EvaluateStrategy.perform_robustness_check(
     momentum, 'lookback', lookback_period_range, Industry_Groups_returns_m, rf_d_monthly, 
     SPXT_returns_m, lookback_period_end, startMonth, nLong, nShort, trx_cost, holding_period
 )
 
 # Plot the results for lookback period robustness check
-visualizer.plot_robustness_check(lookback_period_range, sharpe_ratios_lookback, 'lookback')
+visualizer.plot_robustness_check(lookback_period_range, sharpe_ratios_lookback, 'lookback', sharpe_ratios_lookback_IG, ['Sectors', 'Industry Groups']) 
 
 # %%
 # Define the range for the investment horizon
@@ -149,7 +149,7 @@ sharpe_ratios_investment_horizon_IG = EvaluateStrategy.perform_robustness_check(
 )
 
 # Plot the results for investment horizon robustness check
-visualizer.plot_robustness_check(investment_horizon_range, sharpe_ratios_investment_horizon, 'investment_horizon')
+visualizer.plot_robustness_check(investment_horizon_range, sharpe_ratios_investment_horizon, 'investment_horizon', sharpe_ratios_investment_horizon_IG, ['Sectors', 'Industry Groups'])
 
 # %%
 # Define the range for the number of holdings
@@ -161,17 +161,18 @@ sharpe_ratios_holdings = EvaluateStrategy.perform_robustness_check(
     SPXT_returns_m, lookback_period_end, startMonth, nLong, nShort, trx_cost, holding_period
 )
 
-sharpe_ratios_holdings = EvaluateStrategy.perform_robustness_check(
+sharpe_ratios_holdings_IG = EvaluateStrategy.perform_robustness_check(
     momentum, 'holdings', holdings_range, Industry_Groups_returns_m, rf_d_monthly, 
     SPXT_returns_m, lookback_period_end, startMonth, nLong, nShort, trx_cost, holding_period
 )
 
 # Plot the results for number of holdings robustness check
-visualizer.plot_robustness_check(holdings_range, sharpe_ratios_holdings, 'holdings')
+visualizer.plot_robustness_check(holdings_range, sharpe_ratios_holdings, 'holdings', sharpe_ratios_holdings_IG,['Sectors', 'Industry Groups'])
 
 # %%
 tx_costs = [0.001, 0.0025, 0.005, 0.01]
 total_returns_tx_costs = []
+total_returns_tx_costs_IG  = []
 labels = []
 
 for trx_cost in tx_costs:
@@ -179,9 +180,17 @@ for trx_cost in tx_costs:
         Sectors_returns_m, rf_d_monthly, lookback_period_start, lookback_period_end,
         holding_period, startMonth, nLong, nShort, trx_cost
     )
+
+    _, totalReturns_TC_IG, _ = momentum.backtest_momentum(
+        Industry_Groups_returns_m, rf_d_monthly, lookback_period_start, lookback_period_end,
+        holding_period, startMonth, nLong, nShort, trx_cost
+    )
+
     # Storing the total returns in a list
     total_returns_tx_costs.append(totalReturns_TC)
+    total_returns_tx_costs_IG.append(totalReturns_TC_IG)
+
     # Creating corresponding labels
     labels.append(f'Trx Cost: {trx_cost}')
 
-visualizer.plot_strategies_with_benchmark(dates4plot, total_returns_tx_costs, SPXT_returns_m, labels, startMonth) 
+visualizer.plot_strategies_with_benchmark(dates4plot, total_returns_tx_costs_IG, SPXT_returns_m, labels, startMonth)
