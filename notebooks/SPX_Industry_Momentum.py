@@ -55,6 +55,7 @@ research_path = os.environ.get('RESEARCH_PATH')
 if research_path:
     path = os.path.join(research_path, ProjectName)
     file_path = os.path.join(path, 'data', 'raw')
+    picture_path = os.path.join(path, 'reports', 'figures')
     print(f"Project Path: {path}\nData Path: {file_path}")
 else:
     print("RESEARCH_PATH environment variable is not set.")
@@ -74,7 +75,7 @@ process_data_cached = memory.cache(process_data)
 # Load and process the data using the cached functions
 file_name = 'Bloomberg_Download.csv'
 dates_dateformat, SPXT, Sectors, Rf, Industry_Groups = load_data_cached(file_path, file_name)
-dates_datetime, numericDate_d, firstDayList, lastDayList, dates4plot, Sectors_returns_d, Sectors_returns_m, Industry_Groups_returns_d, Industry_Groups_returns_m, SPXT_returns_d, SPXT_returns_m, rf_d_unadjusted, rf_d, rf_d_monthly = process_data_cached(dates_dateformat, Sectors, Industry_Groups, SPXT, Rf)
+dates_datetime, numericDate_d, firstDayList, lastDayList, dates4plot, Sectors_returns_d, Sectors_returns_m, Industry_Groups_returns_d, Industry_Groups_returns_m, SPXT_returns_d, SPXT_returns_m, SPXT_Xsreturns_m, rf_d_unadjusted, rf_d, rf_d_monthly = process_data_cached(dates_dateformat, Sectors, Industry_Groups, SPXT, Rf)
 
 # %% [markdown]
 # Define Meta-variables for Analysis
@@ -103,12 +104,14 @@ xsReturns_TC_IG, totalReturns_TC_IG, weights_IG = momentum.backtest_momentum(Ind
 visualizer.create_colorheatmap(weights, weights_IG)
 
 # Visualize strategy returns against the benchmark
-visualizer.plot_strategies_with_benchmark(dates4plot, totalReturns_TC, SPXT_returns_m, 'Sector Momentum', startMonth, totalReturns_TC_IG, 'Industry Group Momentum')
+fig = visualizer.plot_strategies_with_benchmark(dates4plot, totalReturns_TC, SPXT_returns_m, 'Sector Momentum', startMonth, totalReturns_TC_IG, 'Industry Group Momentum')
+fig.savefig(os.path.join(picture_path, 'strategy_plot.png'), dpi=300)
+
 
 # %%
 # Summarize and print performance metrics
-ArithmAvgTotalReturn, ArithmAvgXsReturn, StdXsReturns, SharpeArithmetic, MinXsReturn, MaxXsReturn, SkewXsReturn, KurtXsReturn, alphaArithmetic, tvaluealpha, betas, summary_table = strategy_evaluator.summarize_performance(xsReturns_TC, rf_d_monthly, SPXT_returns_m, 12, startMonth, 'Sectors')
-ArithmAvgTotalReturn_IG, ArithmAvgXsReturn_IG, StdXsReturns_IG, SharpeArithmetic_IG, MinXsReturn_IG, MaxXsReturn_IG, SkewXsReturn_IG, KurtXsReturn_IG, alphaArithmetic_IG, tvaluealpha_IG, betas_IG, summary_table_IG = strategy_evaluator.summarize_performance(xsReturns_TC_IG, rf_d_monthly, SPXT_returns_m, 12, startMonth, 'Industry Groups')
+ArithmAvgTotalReturn, ArithmAvgXsReturn, StdXsReturns, SharpeArithmetic, MinXsReturn, MaxXsReturn, SkewXsReturn, KurtXsReturn, alphaArithmetic, tvaluealpha, betas, summary_table = strategy_evaluator.summarize_performance(xsReturns_TC, rf_d_monthly, SPXT_Xsreturns_m, 12, startMonth, 'Sectors')
+ArithmAvgTotalReturn_IG, ArithmAvgXsReturn_IG, StdXsReturns_IG, SharpeArithmetic_IG, MinXsReturn_IG, MaxXsReturn_IG, SkewXsReturn_IG, KurtXsReturn_IG, alphaArithmetic_IG, tvaluealpha_IG, betas_IG, summary_table_IG = strategy_evaluator.summarize_performance(xsReturns_TC_IG, rf_d_monthly, SPXT_Xsreturns_m, 12, startMonth, 'Industry Groups')
 print(summary_table)
 print(summary_table_IG)
 

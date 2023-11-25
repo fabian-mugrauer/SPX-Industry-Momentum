@@ -1,66 +1,44 @@
-Industry Momentum
+S&P500 Industry and Sector Momentum
 ==============================
 
-Can Industry Momentum Outperform the SPXT
+Can the academic US UMD factor be profitably implemented by US sector and industry portfolios after transaction costs? 
+
+Momentum in literature is generally exploited by long only or long/short strategies taking positions in single stocks. However, when attempting to implement these strategies one is confronted with high transaction costs incurred by high turnover. We investigate if the momentum anomaly is exploitable by taking positions in GICS sectors and industry groups as opposed to single stocks, thereby reducing transaction costs due to the lower number of portfolio holdings.
+
+We show that while sector momentum portfolios are not able the beat the benchmark (S&P500) over the full time horizon, industry group momentum portfolio are able to achieve an excess return. 
+
+Please see [SPX_Industry_Momentum](notebooks/SPX_Industry_Momentum.ipynb) for results.
+
+We provide a fully replicable code including the relevant data to replicate our findings - please see below for requirements.
+
+![](reports/figures/strategy_plot.png)
 
 Requirements
 ==============================
 
-First, environment variable PROJECT_ROOT must point to the project folder; you can set it in the .env file, and python will rely on python-dotenv to set it. Please: 
+In a first step. please follow these 3 steps to replicate our code:
 
-- Name the .env file "environment_variables.env"
-- Store the environment_variables.env in the notebooks folder
+1. Environment variable `PROJECT_ROOT` must point to the project folder; you can set it in the .env file, and python will rely on `python-dotenv` to set it. Please: 
 
+    - Name the .env file "environment_variables.env"
+    - Store the environment_variables.env in the notebooks folder
 
-Project Organization
-------------
+2. Please install the following versions and channels of mamba and conda to recreate the virtual environment in 3.:
+    - Mamba 1.4.2
+    - Conda 23.3.1
+      - Channel: defaults
+      - Channel: conda-forge
+3. Please `cd` into the SPX-Industry-Momentum folder inside your project folder and recreate and activate the virtual environment using mamba
+   ```bash
+    mamba env create -f spx_industry_mom.yaml
+    ```
+   ```bash
+    mamba activate spx_industry_mom
+    ```
 
-    ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
-    ├── README.md          <- The top-level README for developers using this project.
-    ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
-    │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
-    │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+ Now, [SPX_Industry_Momentum](notebooks/SPX_Industry_Momentum.ipynb) is runnable and replicates all our results.
 
 
---------
 
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+
+
