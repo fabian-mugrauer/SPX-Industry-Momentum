@@ -5,13 +5,13 @@ Can the academic US UMD factor be profitably implemented by US sector and indust
 
 Momentum in literature is generally exploited by long only or long/short strategies taking positions in single stocks. However, when attempting to implement these strategies one is confronted with high transaction costs incurred by high turnover. We investigate if the momentum anomaly is exploitable by taking positions in GICS sectors and industry groups as opposed to single stocks, thereby reducing transaction costs due to the lower number of portfolio holdings.
 
-We show that ...
+We show that while sector momentum portfolios are not able the beat the benchmark (S&P500) over the full time horizon, industry group momentum portfolio are able to achieve an excess return. 
 
-Implement Picture
+Please see [SPX_Industry_Momentum](notebooks/SPX_Industry_Momentum.ipynb) for results.
 
-Go to XXX for results.
+We provide a fully replicable code including the relevant data to replicate our findings - please see below for requirements.
 
-We provide a fully replicable code to replicate our findings - please see below for requirements.
+![](reports/figures/strategy_plot.png)
 
 Requirements
 ==============================
