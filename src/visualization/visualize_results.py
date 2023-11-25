@@ -86,12 +86,21 @@ class Visualizer:
         plt.tight_layout()
         plt.show()
 
-    def plot_robustness_check(self, check_range, sharp_ratios, check_type):
+    def plot_robustness_check(self, check_range, sharpe_ratios, check_type, sharpe_ratios_2=None, labels=None):
         """
         Plots the results of a robustness check.
+        Optionally plots a second line if sharpe_ratios_2 is provided.
         """
         plt.figure()
-        plt.plot(check_range, sharp_ratios, linewidth=self.line_width, color='blue')
+        if sharpe_ratios_2 is None or labels is None:
+            # Plot only one line without labels
+            plt.plot(check_range, sharpe_ratios, linewidth=self.line_width, color=self.palette[0])
+        else:
+            # Plot two lines with labels
+            plt.plot(check_range, sharpe_ratios, linewidth=self.line_width, color=self.palette[0], label=labels[0])
+            plt.plot(check_range, sharpe_ratios_2, linewidth=self.line_width, color=self.palette[1], label=labels[1])
+            plt.legend()
+
         plt.xlabel(check_type.replace("_", " "))
         plt.ylabel("Sharpe Ratio")
         plt.title(f"Robustness Check: {check_type.replace('_', ' ').title()}")
