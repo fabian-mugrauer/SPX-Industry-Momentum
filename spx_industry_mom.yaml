@@ -3,7 +3,7 @@ channels:
   - defaults
   - conda-forge
 dependencies:
-  - appnope=0.1.2
+  - appnope=0.1.2 # [osx]
   - asttokens=2.0.5
   - backcall=0.2.0
   - blas=1.0
