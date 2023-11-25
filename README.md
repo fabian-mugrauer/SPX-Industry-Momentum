@@ -60,6 +60,7 @@ If you want to use Docker, please follow these steps (please make sure that the 
     ```bash
     mamba activate spx_industry_mom
     ```
+Now you can `cd` into `notebooks` and run [SPX_Industry_Momentum](notebooks/SPX_Industry_Momentum.py)
 
 
 
