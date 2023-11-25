@@ -46,7 +46,7 @@ In a first step. please follow these steps to replicate our code:
 Docker
 ==============================
 
-If you want to use Docker, please download the Dockerfile and follow these steps:
+If you want to use Docker, please follow these steps (please make sure that the `pwd` is in the folder to which you cloned this Github-Repo):
 
 1. Build the docker container 
    ```bash
@@ -56,7 +56,10 @@ If you want to use Docker, please download the Dockerfile and follow these steps
    ```bash
     docker run -it --rm spx-industry-momentum /bin/bash
     ```
-
+3. Activate the virtual environment
+    ```bash
+    mamba activate spx_industry_mom
+    ```
 
 
 
