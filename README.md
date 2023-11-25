@@ -16,11 +16,11 @@ We provide a fully replicable code including the relevant data to replicate our 
 Requirements
 ==============================
 
-Please clone the Github repo to a folder called "SPX-Industry-Momentum" inside your project folder. Should you wish to choose another Folder-name this is easily changable inside the notebook [SPX_Industry_Momentum](notebooks/SPX_Industry_Momentum.ipynb).
+Please clone the Github repo to a folder called "SPX-Industry-Momentum" inside your project folder. Should you wish to choose another folder name this is easily changable inside the notebook [SPX_Industry_Momentum](notebooks/SPX_Industry_Momentum.ipynb).
 ```bash
     git clone https://github.com/fabian-mugrauer/SPX-Industry-Momentum.git
 ```
-Your final folder structure should look like this (see 1. in the following list to set the `PROJECT_ROOT`.
+Your final folder structure should look like this (see 1. in the following list to set the `PROJECT_ROOT`).
 - `/Project folder` -> see 1.
   - `/SPX-Industry-Momentum` -> name amendable if wished
 
