@@ -20,8 +20,8 @@ Please clone the Github repo to a folder called "SPX-Industry-Momentum" inside y
 ```bash
     git clone https://github.com/fabian-mugrauer/SPX-Industry-Momentum.git
 ```
-Your final folder structure should look like this (see 1. in the following list to set the `PROJECT_ROOT`).
-- `/Project folder` -> see 1.
+Your final folder structure should look like this:
+- `/Project folder` -> see 1. in the following list to set the `PROJECT_ROOT
   - `/SPX-Industry-Momentum` -> name amendable if wished
 
 Please follow these steps to replicate our code:
