@@ -16,7 +16,7 @@ We provide a fully replicable code including the relevant data to replicate our 
 Requirements
 ==============================
 
-In a first step. please follow these 3 steps to replicate our code:
+In a first step. please follow these steps to replicate our code:
 
 1. Environment variable `PROJECT_ROOT` must point to the project folder; you can set it in the .env file, and python will rely on `python-dotenv` to set it. Please: 
 
@@ -32,11 +32,30 @@ In a first step. please follow these 3 steps to replicate our code:
    ```bash
     mamba env create -f spx_industry_mom.yaml
     ```
+4. (Only if on Mac): Please install `appnope` version 0.1.2
+   ```bash
+   mamba install -n spx_industry_mom appnope=0.1.2
+   ```
+5. Please activate your environment:
    ```bash
     mamba activate spx_industry_mom
     ```
 
  Now, [SPX_Industry_Momentum](notebooks/SPX_Industry_Momentum.ipynb) is runnable and replicates all our results.
+
+Docker
+==============================
+
+If you want to use Docker, please download the Dockerfile and follow these steps:
+
+1. Build the docker container 
+   ```bash
+    docker build -t spx-industry-momentum .
+    ```
+2. Run the docker container
+   ```bash
+    docker run -it --rm spx-industry-momentum /bin/bash
+    ```
 
 
 
