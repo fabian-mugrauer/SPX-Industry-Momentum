@@ -127,7 +127,7 @@ class EvaluateStrategy:
                 raise ValueError("Invalid check type")
 
             xsReturns, _, _ = momentum.backtest_momentum(Sectors_returns_m, rf_d_monthly, lb_period, lookback_period_end, inv_horizon, startMonth, holdings, nShort, trx_cost)
-            _, _, _, sharpRatio, _, _, _, _, _, _, _, _ = EvaluateStrategy.summarize_performance(xsReturns, rf_d_monthly, SPXT_returns_m, 12, startMonth)
+            _, _, _, sharpRatio, _, _, _, _, _, _, _, _ = EvaluateStrategy.summarize_performance(xsReturns, rf_d_monthly, SPXT_returns_m, 12, startMonth, headline=None)
 
             sharpRatio_loop[i] = sharpRatio
 
