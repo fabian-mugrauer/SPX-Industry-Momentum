@@ -55,6 +55,7 @@ research_path = os.environ.get('RESEARCH_PATH')
 if research_path:
     path = os.path.join(research_path, ProjectName)
     file_path = os.path.join(path, 'data', 'raw')
+    picture_path = os.path.join(path, 'reports', 'figures')
     print(f"Project Path: {path}\nData Path: {file_path}")
 else:
     print("RESEARCH_PATH environment variable is not set.")
@@ -103,7 +104,9 @@ xsReturns_TC_IG, totalReturns_TC_IG, weights_IG = momentum.backtest_momentum(Ind
 visualizer.create_colorheatmap(weights, weights_IG)
 
 # Visualize strategy returns against the benchmark
-visualizer.plot_strategies_with_benchmark(dates4plot, totalReturns_TC, SPXT_returns_m, 'Sector Momentum', startMonth, totalReturns_TC_IG, 'Industry Group Momentum')
+fig = visualizer.plot_strategies_with_benchmark(dates4plot, totalReturns_TC, SPXT_returns_m, 'Sector Momentum', startMonth, totalReturns_TC_IG, 'Industry Group Momentum')
+fig.savefig(os.path.join(picture_path, 'strategy_plot.png'), dpi=300)
+
 
 # %%
 # Summarize and print performance metrics

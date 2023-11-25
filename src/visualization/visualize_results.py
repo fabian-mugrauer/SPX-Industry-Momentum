@@ -84,7 +84,7 @@ class Visualizer:
 
         # Display the plot
         plt.tight_layout()
-        plt.show()
+        return fig
 
     def plot_robustness_check(self, check_range, sharp_ratios, check_type):
         """
