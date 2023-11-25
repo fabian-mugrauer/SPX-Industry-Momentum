@@ -12,20 +12,38 @@ class Visualizer:
         # Set default line width for clarity
         self.line_width = 2
 
-    def create_colorheatmap(self, weights):
+    def create_colorheatmap(self, weights, weights_2=None):
         """
-        Creates and displays a color-blind friendly heatmap.
+        Creates and displays one or two color-blind friendly heatmaps.
+        If weights_2 is provided, it displays it as a second subplot.
         """
-        plt.figure(figsize=(10, 6))
-        sns.heatmap(weights, cmap='cividis', cbar=True)
-        plt.title("Heatmap of weights over months")
-        plt.xlabel("Assets")
-        plt.ylabel("Months")
+        if weights_2 is None:
+            # Only one heatmap
+            plt.figure(figsize=(10, 6))
+            sns.heatmap(weights, cmap='cividis', cbar=True)
+            plt.title("Heatmap of weights over months")
+            plt.xlabel("Assets")
+            plt.ylabel("Months")
+        else:
+            # Two heatmaps as subplots
+            fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(20, 6))
+
+            sns.heatmap(weights, cmap='cividis', cbar=True, ax=ax1)
+            ax1.set_title("Heatmap of weights over months")
+            ax1.set_xlabel("Assets")
+            ax1.set_ylabel("Months")
+
+            sns.heatmap(weights_2, cmap='cividis', cbar=True, ax=ax2)
+            ax2.set_title("Heatmap of second weights over months")
+            ax2.set_xlabel("Assets")
+            ax2.set_ylabel("Months")
+
         plt.show()
 
-    def plot_strategies_with_benchmark(self, dates, strategy_returns_list, benchmark_returns, labels, start_month):
+    def plot_strategies_with_benchmark(self, dates, strategy_returns_list, benchmark_returns, labels, start_month, strategy_returns_list_2=None, label_2='Industry groups'):
         """
         Plots strategy returns along with a benchmark return.
+        Optionally plots a second strategy line if strategy_returns_list_2 is provided.
         """
         # Check if strategy_returns_list is a single series or a list of series
         if isinstance(strategy_returns_list, np.ndarray):
@@ -45,6 +63,11 @@ class Visualizer:
         for i, returns in enumerate(strategy_returns_list):
             cumulative_returns = np.cumprod(1 + returns[start_month:]) - 1
             ax.plot(dates[start_month:], cumulative_returns, label=labels[i], color=strategy_colors[i], linestyle='-', linewidth=self.line_width)
+
+        # Plot the second strategy return series if provided
+        if strategy_returns_list_2 is not None:
+            cumulative_returns_2 = np.cumprod(1 + strategy_returns_list_2[start_month:]) - 1
+            ax.plot(dates[start_month:], cumulative_returns_2, label=label_2, color='orange', linestyle='-', linewidth=self.line_width)
 
         # Plot the benchmark return series
         cumulative_benchmark_returns = np.cumprod(1 + benchmark_returns[start_month:].squeeze()) - 1

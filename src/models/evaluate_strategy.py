@@ -5,7 +5,7 @@ from src.models.momentum_strategy import MomentumStrategy  # Import the Momentum
 
 class EvaluateStrategy:
     @staticmethod
-    def summarize_performance(xsReturns, Rf, factorXsReturns, annualizationFactor, startM):
+    def summarize_performance(xsReturns, Rf, factorXsReturns, annualizationFactor, startM, headline):
         """
         Calculate various performance metrics for the portfolio.
 
@@ -78,6 +78,8 @@ class EvaluateStrategy:
 
         # Create table
         x = PrettyTable()
+
+        x.title = headline
         x.field_names = ["Statistic", "Value"]
 
         x.add_row(["ArithmAvgTotalReturn", ArithmAvgTotalReturn])
