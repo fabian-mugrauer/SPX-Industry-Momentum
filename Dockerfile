@@ -9,8 +9,9 @@ RUN apt-get update && apt-get install -y \
     git \
     docker.io 
 
-# Clone the GitHub repository
-RUN git clone https://github.com/fabian-mugrauer/SPX-Industry-Momentum.git .
+# Clone the GitHub repository into a specific folder
+RUN mkdir SPX-Industry-Momentum && \
+    git clone https://github.com/fabian-mugrauer/SPX-Industry-Momentum.git SPX-Industry-Momentum
 
 # Add conda-forge to the list of channels
 RUN conda config --add channels conda-forge
