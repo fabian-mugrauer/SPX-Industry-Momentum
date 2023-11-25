@@ -40,34 +40,34 @@ class Visualizer:
 
         plt.show()
 
-    def plot_strategies_with_benchmark(self, dates, strategy_returns_list, benchmark_returns, labels, start_month, strategy_returns_list_2=None, label_2='Industry groups'):
+    def plot_strategies_with_benchmark(self, dates, strategy_returns_lists, benchmark_returns, labels, start_month, strategy_returns_lists_2=None, labels_2=None):
         """
-        Plots strategy returns along with a benchmark return.
-        Optionally plots a second strategy line if strategy_returns_list_2 is provided.
+        Plots multiple strategy returns along with a benchmark return.
+        Handles both single and multiple strategy return series.
         """
-        # Check if strategy_returns_list is a single series or a list of series
-        if isinstance(strategy_returns_list, np.ndarray):
-            strategy_returns_list = [strategy_returns_list]  # Convert to a list for consistency
-            labels = [labels]  # Assume labels is a single string and convert to a list
+        # Convert single series to list for consistency
+        if isinstance(strategy_returns_lists, np.ndarray):
+            strategy_returns_lists = [strategy_returns_lists]
+            labels = [labels]
 
-        if len(strategy_returns_list) > 5:
-            raise ValueError("Cannot plot more than 5 strategy return series.")
-
-        # Use the default palette for strategy colors
-        strategy_colors = self.palette[:len(strategy_returns_list)]
+        if strategy_returns_lists_2 is not None:
+            if isinstance(strategy_returns_lists_2, np.ndarray):
+                strategy_returns_lists_2 = [strategy_returns_lists_2]
+                labels_2 = [labels_2]
 
         # Create a new figure and axis
         fig, ax = plt.subplots(figsize=(10, 6))
 
-        # Plot each strategy return series
-        for i, returns in enumerate(strategy_returns_list):
+        # Plot each strategy return series in the first list
+        for i, returns in enumerate(strategy_returns_lists):
             cumulative_returns = np.cumprod(1 + returns[start_month:]) - 1
-            ax.plot(dates[start_month:], cumulative_returns, label=labels[i], color=strategy_colors[i], linestyle='-', linewidth=self.line_width)
+            ax.plot(dates[start_month:], cumulative_returns, label=labels[i], color=self.palette[i % len(self.palette)], linestyle='-', linewidth=self.line_width)
 
-        # Plot the second strategy return series if provided
-        if strategy_returns_list_2 is not None:
-            cumulative_returns_2 = np.cumprod(1 + strategy_returns_list_2[start_month:]) - 1
-            ax.plot(dates[start_month:], cumulative_returns_2, label=label_2, color='orange', linestyle='-', linewidth=self.line_width)
+        # Plot each strategy return series in the second list if provided
+        if strategy_returns_lists_2 is not None:
+            for i, returns in enumerate(strategy_returns_lists_2):
+                cumulative_returns = np.cumprod(1 + returns[start_month:]) - 1
+                ax.plot(dates[start_month:], cumulative_returns, label=labels_2[i], color=self.palette[(len(strategy_returns_lists) + i) % len(self.palette)], linestyle='--', linewidth=self.line_width)
 
         # Plot the benchmark return series
         cumulative_benchmark_returns = np.cumprod(1 + benchmark_returns[start_month:].squeeze()) - 1
