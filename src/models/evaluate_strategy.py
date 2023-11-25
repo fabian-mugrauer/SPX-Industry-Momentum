@@ -74,24 +74,25 @@ class EvaluateStrategy:
         MaxXsReturn = np.max(xsReturns, axis=0)
         SkewXsReturn = skew(xsReturns, axis=0)
         KurtXsReturn = kurtosis(xsReturns, axis=0)
-        alphaArithmetic = annualizationFactor * 100 * betas[0]
+        alphaArithmetic = annualizationFactor * betas[0]
 
         # Create table
         x = PrettyTable()
 
         x.title = headline
         x.field_names = ["Statistic", "Value"]
+ 
 
-        x.add_row(["ArithmAvgTotalReturn", ArithmAvgTotalReturn])
-        x.add_row(["ArithmAvgXsReturn", ArithmAvgXsReturn])
-        x.add_row(["StdXsReturns", StdXsReturns])
-        x.add_row(["SharpeArithmetic", SharpeArithmetic])
-        x.add_row(["SharpeGeometric", SharpeGeometric])
-        x.add_row(["MinXsReturn", MinXsReturn])
-        x.add_row(["MaxXsReturn", MaxXsReturn])
-        x.add_row(["SkewXsReturn", SkewXsReturn])
-        x.add_row(["KurtXsReturn", KurtXsReturn])
-        x.add_row(["alphaArithmetic", alphaArithmetic])
+        x.add_row(["ArithmAvgTotalReturn", f"{ArithmAvgTotalReturn[0]:.3f}"])
+        x.add_row(["ArithmAvgXsReturn", f"{ArithmAvgXsReturn[0]:.3f}"])
+        x.add_row(["StdXsReturns", f"{StdXsReturns[0]:.3f}"])
+        x.add_row(["SharpeArithmetic", f"{SharpeArithmetic[0]:.3f}"])
+        x.add_row(["SharpeGeometric", f"{SharpeGeometric[0]:.3f}"])
+        x.add_row(["MinXsReturn", f"{MinXsReturn[0]:.3f}"])
+        x.add_row(["MaxXsReturn", f"{MaxXsReturn[0]:.3f}"])
+        x.add_row(["SkewXsReturn", f"{SkewXsReturn[0]:.3f}"])
+        x.add_row(["KurtXsReturn", f"{KurtXsReturn[0]:.3f}"])
+        x.add_row(["Beta", f"{betas[0][0]:.3f}"])
 
         return (ArithmAvgTotalReturn, ArithmAvgXsReturn, StdXsReturns, SharpeArithmetic, MinXsReturn, MaxXsReturn, SkewXsReturn, KurtXsReturn, alphaArithmetic, tvaluealpha, betas, x)
     
