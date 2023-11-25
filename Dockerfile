@@ -13,6 +13,9 @@ RUN apt-get update && apt-get install -y \
 RUN mkdir SPX-Industry-Momentum && \
     git clone https://github.com/fabian-mugrauer/SPX-Industry-Momentum.git SPX-Industry-Momentum
 
+# Change working directory to the cloned repository
+WORKDIR /usr/src/app/SPX-Industry-Momentum
+
 # Add conda-forge to the list of channels
 RUN conda config --add channels conda-forge
 
@@ -27,6 +30,10 @@ RUN mamba env create -f spx_industry_mom.yaml
 
 # (Optional) Expose Docker socket for Docker-in-Docker (DinD)
 VOLUME /var/run/docker.sock
+
+# Create environment_variables.env file in the specified directory
+RUN mkdir -p /usr/src/app/SPX-Industry-Momentum/notebooks && \
+    echo "PROJECT_ROOT=/usr/src/app" > /usr/src/app/SPX-Industry-Momentum/notebooks/environment_variables.env
 
 # Activate the environment (this is just for documentation, 
 # you'll need to activate it when running the container)
