@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import seaborn as sns
 import numpy as np
+import pandas as pd
 
 class Visualizer:
     def __init__(self):
@@ -12,28 +13,39 @@ class Visualizer:
         # Set default line width for clarity
         self.line_width = 2
 
-    def create_colorheatmap(self, weights, weights_2=None):
+    def create_colorheatmap(self, weights, weights_2=None, column_labels=None, column_labels_2=None):
         """
-        Creates and displays one or two color-blind friendly heatmaps.
+        Creates and displays one or two color-blind friendly heatmaps, sorted alphabetically by column labels.
         If weights_2 is provided, it displays it as a second subplot.
+        column_labels and column_labels_2 are lists of labels for the columns of weights and weights_2, respectively.
         """
+        # Convert weights to DataFrame for easier manipulation
+        df_weights = pd.DataFrame(weights, columns=column_labels)
+
+        # Sort the DataFrame by column labels
+        df_weights = df_weights.reindex(sorted(df_weights.columns), axis=1)
+
         if weights_2 is None:
             # Only one heatmap
             plt.figure(figsize=(10, 6))
-            sns.heatmap(weights, cmap='cividis', cbar=True)
+            sns.heatmap(df_weights, cmap='cividis', cbar=True)
             plt.title("Heatmap of weights over months")
             plt.xlabel("Assets")
             plt.ylabel("Months")
         else:
+            # Convert weights_2 to DataFrame and sort
+            df_weights_2 = pd.DataFrame(weights_2, columns=column_labels_2)
+            df_weights_2 = df_weights_2.reindex(sorted(df_weights_2.columns), axis=1)
+
             # Two heatmaps as subplots
             fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(20, 6))
 
-            sns.heatmap(weights, cmap='cividis', cbar=True, ax=ax1)
+            sns.heatmap(df_weights, cmap='cividis', cbar=True, ax=ax1)
             ax1.set_title("Heatmap of weights over months")
             ax1.set_xlabel("Assets")
             ax1.set_ylabel("Months")
 
-            sns.heatmap(weights_2, cmap='cividis', cbar=True, ax=ax2)
+            sns.heatmap(df_weights_2, cmap='cividis', cbar=True, ax=ax2)
             ax2.set_title("Heatmap of second weights over months")
             ax2.set_xlabel("Assets")
             ax2.set_ylabel("Months")
