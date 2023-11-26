@@ -77,13 +77,16 @@ file_name = 'Bloomberg_Download.csv'
 dates_dateformat, SPXT, Sectors, Rf, Industry_Groups = load_data_cached(file_path, file_name)
 dates_datetime, numericDate_d, firstDayList, lastDayList, dates4plot, Sectors_returns_d, Sectors_returns_m, Industry_Groups_returns_d, Industry_Groups_returns_m, SPXT_returns_d, SPXT_returns_m, SPXT_Xsreturns_m, rf_d_unadjusted, rf_d, rf_d_monthly = process_data_cached(dates_dateformat, Sectors, Industry_Groups, SPXT, Rf)
 
+sector_names = [name[2:-6] if len(name) > 8 else '' for name in Sectors.columns]
+IG_names = [name[2:-6] if len(name) > 8 else '' for name in Industry_Groups.columns]
+
 # %% [markdown]
 # Define Meta-variables for Analysis
 
 # %%
 # Define analysis parameters
 trx_cost = 0.001
-nLong, nShort = 3, 0
+nLong = 3
 startMonth = 13
 lookback_period_start, lookback_period_end = 9, 1
 holding_period = 3
@@ -93,20 +96,32 @@ holding_period = 3
 
 # %%
 # Perform the momentum strategy backtest
-xsReturns_TC, totalReturns_TC, weights = momentum.backtest_momentum(Sectors_returns_m, rf_d_monthly, lookback_period_start, lookback_period_end, holding_period, startMonth, nLong, nShort, trx_cost)
-xsReturns_TC_IG, totalReturns_TC_IG, weights_IG = momentum.backtest_momentum(Industry_Groups_returns_m, rf_d_monthly, lookback_period_start, lookback_period_end, holding_period, startMonth, nLong, nShort, trx_cost)
+xsReturns_TC, totalReturns_TC, weights = momentum.backtest_momentum(Sectors_returns_m, rf_d_monthly, lookback_period_start, lookback_period_end, holding_period, startMonth, nLong, 0, trx_cost)
+xsReturns_TC_IG, totalReturns_TC_IG, weights_IG = momentum.backtest_momentum(Industry_Groups_returns_m, rf_d_monthly, lookback_period_start, lookback_period_end, holding_period, startMonth, nLong, 0, trx_cost)
+
+# Long / Short implementation
+xsReturns_TC_LS, totalReturns_TC_LS, weights_LS = momentum.backtest_momentum(Sectors_returns_m, rf_d_monthly, lookback_period_start, lookback_period_end, holding_period, startMonth, nLong, 3, trx_cost)
+xsReturns_TC_IG_LS, totalReturns_TC_IG_LS, weights_IG_LS = momentum.backtest_momentum(Industry_Groups_returns_m, rf_d_monthly, lookback_period_start, lookback_period_end, holding_period, startMonth, nLong, 3, trx_cost)
 
 # %% [markdown]
 # Analysis Output
 
 # %%
 # Visualize the weights using a heatmap
-visualizer.create_colorheatmap(weights, weights_IG)
+
+fig1 = visualizer.create_colorheatmap(weights, weights_IG, sector_names, IG_names)
+fig1.savefig(os.path.join(picture_path, 'strategy_weights_long.png'), dpi=300)
+
+# Long/Short
+fig2 = visualizer.create_colorheatmap(weights_LS, weights_IG_LS, sector_names, IG_names)
+fig2.savefig(os.path.join(picture_path, 'strategy_weights_long_short.png'), dpi=300)
 
 # Visualize strategy returns against the benchmark
-fig = visualizer.plot_strategies_with_benchmark(dates4plot, totalReturns_TC, SPXT_returns_m, 'Sector Momentum', startMonth, totalReturns_TC_IG, 'Industry Group Momentum')
-fig.savefig(os.path.join(picture_path, 'strategy_plot.png'), dpi=300)
+fig3 = visualizer.plot_strategies_with_benchmark(dates4plot, totalReturns_TC, SPXT_returns_m, 'Sector Momentum', startMonth, totalReturns_TC_IG, 'Industry Group Momentum')
+fig3.savefig(os.path.join(picture_path, 'strategy_plot.png'), dpi=300)
 
+fig4 = visualizer.plot_strategies_with_benchmark(dates4plot, totalReturns_TC_LS, rf_d_monthly, 'Sector Momentum Long/Short', startMonth, totalReturns_TC_IG_LS, 'Industry Group Momentum Long/Short')
+fig4.savefig(os.path.join(picture_path, 'strategy_plot_long_short.png'), dpi=300)
 
 # %%
 # Summarize and print performance metrics
@@ -125,16 +140,17 @@ lookback_period_range = range(3, 13)  # Example range from 3 to 12
 # Perform the robustness check for lookback period
 sharpe_ratios_lookback = EvaluateStrategy.perform_robustness_check(
     momentum, 'lookback', lookback_period_range, Sectors_returns_m, rf_d_monthly, 
-    SPXT_returns_m, lookback_period_end, startMonth, nLong, nShort, trx_cost, holding_period
+    SPXT_returns_m, lookback_period_end, startMonth, nLong, 0, trx_cost, holding_period
 )
 
 sharpe_ratios_lookback_IG = EvaluateStrategy.perform_robustness_check(
     momentum, 'lookback', lookback_period_range, Industry_Groups_returns_m, rf_d_monthly, 
-    SPXT_returns_m, lookback_period_end, startMonth, nLong, nShort, trx_cost, holding_period
+    SPXT_returns_m, lookback_period_end, startMonth, nLong, 0, trx_cost, holding_period
 )
 
 # Plot the results for lookback period robustness check
-visualizer.plot_robustness_check(lookback_period_range, sharpe_ratios_lookback, 'lookback', sharpe_ratios_lookback_IG, ['Sectors', 'Industry Groups']) 
+fig5 = visualizer.plot_robustness_check(lookback_period_range, sharpe_ratios_lookback, 'lookback', sharpe_ratios_lookback_IG, ['Sectors', 'Industry Groups']) 
+fig5.savefig(os.path.join(picture_path, 'robustness_check_lb.png'), dpi=300)
 
 # %%
 # Define the range for the investment horizon
@@ -143,16 +159,17 @@ investment_horizon_range = range(1, 6)  # Example range
 # Perform the robustness check for investment horizon
 sharpe_ratios_investment_horizon = EvaluateStrategy.perform_robustness_check(
     momentum, 'investment_horizon', investment_horizon_range, Sectors_returns_m, rf_d_monthly, 
-    SPXT_returns_m, lookback_period_end, startMonth, nLong, nShort, trx_cost, holding_period
+    SPXT_returns_m, lookback_period_end, startMonth, nLong, 0, trx_cost, holding_period
 )
 
 sharpe_ratios_investment_horizon_IG = EvaluateStrategy.perform_robustness_check(
     momentum, 'investment_horizon', investment_horizon_range, Industry_Groups_returns_m, rf_d_monthly, 
-    SPXT_returns_m, lookback_period_end, startMonth, nLong, nShort, trx_cost, holding_period
+    SPXT_returns_m, lookback_period_end, startMonth, nLong, 0, trx_cost, holding_period
 )
 
 # Plot the results for investment horizon robustness check
-visualizer.plot_robustness_check(investment_horizon_range, sharpe_ratios_investment_horizon, 'investment_horizon', sharpe_ratios_investment_horizon_IG, ['Sectors', 'Industry Groups'])
+fig6 = visualizer.plot_robustness_check(investment_horizon_range, sharpe_ratios_investment_horizon, 'investment_horizon', sharpe_ratios_investment_horizon_IG, ['Sectors', 'Industry Groups'])
+fig6.savefig(os.path.join(picture_path, 'robustness_check_ih.png'), dpi=300)
 
 # %%
 # Define the range for the number of holdings
@@ -161,16 +178,17 @@ holdings_range = range(1, 6)  # Example range
 # Perform the robustness check for number of holdings
 sharpe_ratios_holdings = EvaluateStrategy.perform_robustness_check(
     momentum, 'holdings', holdings_range, Sectors_returns_m, rf_d_monthly, 
-    SPXT_returns_m, lookback_period_end, startMonth, nLong, nShort, trx_cost, holding_period
+    SPXT_returns_m, lookback_period_end, startMonth, nLong, 0, trx_cost, holding_period
 )
 
 sharpe_ratios_holdings_IG = EvaluateStrategy.perform_robustness_check(
     momentum, 'holdings', holdings_range, Industry_Groups_returns_m, rf_d_monthly, 
-    SPXT_returns_m, lookback_period_end, startMonth, nLong, nShort, trx_cost, holding_period
+    SPXT_returns_m, lookback_period_end, startMonth, nLong, 0, trx_cost, holding_period
 )
 
 # Plot the results for number of holdings robustness check
-visualizer.plot_robustness_check(holdings_range, sharpe_ratios_holdings, 'holdings', sharpe_ratios_holdings_IG,['Sectors', 'Industry Groups'])
+fig7 = visualizer.plot_robustness_check(holdings_range, sharpe_ratios_holdings, 'holdings', sharpe_ratios_holdings_IG,['Sectors', 'Industry Groups'])
+fig7.savefig(os.path.join(picture_path, 'robustness_check_holdings.png'), dpi=300)
 
 # %%
 tx_costs = [0.001, 0.0025, 0.005, 0.01]
@@ -181,12 +199,12 @@ labels = []
 for trx_cost in tx_costs:
     _, totalReturns_TC, _ = momentum.backtest_momentum(
         Sectors_returns_m, rf_d_monthly, lookback_period_start, lookback_period_end,
-        holding_period, startMonth, nLong, nShort, trx_cost
+        holding_period, startMonth, nLong, 0, trx_cost
     )
 
     _, totalReturns_TC_IG, _ = momentum.backtest_momentum(
         Industry_Groups_returns_m, rf_d_monthly, lookback_period_start, lookback_period_end,
-        holding_period, startMonth, nLong, nShort, trx_cost
+        holding_period, startMonth, nLong, 0, trx_cost
     )
 
     # Storing the total returns in a list
@@ -196,4 +214,5 @@ for trx_cost in tx_costs:
     # Creating corresponding labels
     labels.append(f'Trx Cost: {trx_cost}')
 
-visualizer.plot_strategies_with_benchmark(dates4plot, total_returns_tx_costs_IG, SPXT_returns_m, labels, startMonth)
+fig8 = visualizer.plot_strategies_with_benchmark(dates4plot, total_returns_tx_costs_IG, SPXT_returns_m, labels, startMonth)
+fig8.savefig(os.path.join(picture_path, 'robustness_check_tc.png'), dpi=300)
