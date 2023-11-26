@@ -50,7 +50,7 @@ class Visualizer:
             ax2.set_xlabel("Assets")
             ax2.set_ylabel("Months")
 
-        plt.show()
+        return fig
 
     def plot_strategies_with_benchmark(self, dates, strategy_returns_lists, benchmark_returns, labels, start_month, strategy_returns_lists_2=None, labels_2=None):
         """
@@ -116,4 +116,5 @@ class Visualizer:
         plt.xlabel(check_type.replace("_", " "))
         plt.ylabel("Sharpe Ratio")
         plt.title(f"Robustness Check: {check_type.replace('_', ' ').title()}")
-        plt.show()
+        
+        return plt
