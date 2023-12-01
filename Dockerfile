@@ -40,3 +40,12 @@ RUN mkdir -p /usr/src/app/SPX-Industry-Momentum/notebooks && \
 # Note that Docker containers do not maintain environment state between RUN commands
 # Therefore, we activate the environment when running commands like ENTRYPOINT or CMD
 ENV PATH /opt/conda/envs/spx_industry_mom/bin:$PATH
+
+# Install Jupyter
+RUN mamba install -n spx_industry_mom jupyter
+
+# Expose the port Jupyter will run on
+EXPOSE 8888
+
+# Run Jupyter notebook
+CMD ["jupyter", "notebook", "--ip='*'", "--port=8888", "--no-browser", "--allow-root"]
