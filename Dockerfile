@@ -44,6 +44,9 @@ ENV PATH /opt/conda/envs/spx_industry_mom/bin:$PATH
 # Install Jupyter
 RUN mamba install -n spx_industry_mom jupyter
 
+# Create a new IPython kernel associated with your environment
+RUN /opt/conda/envs/spx_industry_mom/bin/python -m ipykernel install --user --name spx_industry_mom --display-name "Python (spx_industry_mom)"
+
 # Expose the port Jupyter will run on
 EXPOSE 8888
 
