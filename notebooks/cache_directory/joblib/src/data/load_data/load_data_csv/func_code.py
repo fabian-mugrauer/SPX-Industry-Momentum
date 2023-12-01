@@ -1,4 +1,4 @@
-# first line: 8
+# first line: 7
     def load_data_csv(self, file_path, file_name):
         # Load the file
         Data_file_path = os.path.join(file_path, file_name)
@@ -15,10 +15,10 @@
         column_names = df.iloc[2]
 
         # Rename the columns for each DataFrame
-        dates_dateformat.columns = [column_names[0]]
-        SPXT.columns = [column_names[1]]
+        dates_dateformat.columns = [column_names.iloc[0]]
+        SPXT.columns = [column_names.iloc[1]]
         Sectors.columns = column_names[2:13]
-        Rf.columns = [column_names[13]]
+        Rf.columns = [column_names.iloc[13]]
         Industry_Groups.columns = column_names[14:39]
 
         # Reset the indexing
