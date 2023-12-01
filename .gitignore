@@ -1,6 +1,12 @@
 # Project specific
 notebooks/environment_variables.env
 
+# Dont show the cache_directory/joblib
+notebooks/cache_directory/joblib/
+
+# Dont show docs
+docs/
+
 # Dont show requirements because we have a .yaml
 requirements.txt
 setup.py
