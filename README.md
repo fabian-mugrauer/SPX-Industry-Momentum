@@ -75,7 +75,7 @@ If you want to use Docker, please follow these steps (please make sure that the 
 
 You can now access the Jupyter notebook server at localhost:8888 in your web browser. The server will print out a URL with a token for authentication, which you can use to access the server.
 
-Now you can `cd` into `notebooks` inside the docker container and run [SPX_Industry_Momentum](notebooks/SPX_Industry_Momentum.py)
+You can then run [SPX_Industry_Momentum](notebooks/SPX_Industry_Momentum.ipynb) inside the notebooks folder.
 
 Bloomberg
 ==============================
