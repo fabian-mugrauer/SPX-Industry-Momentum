@@ -1,12 +1,4 @@
-from financial_data_processor import FinancialDataProcessor
-import pandas as pd
-import numpy as np
-
-class Dataprocessor:
-    def __init__(self):
-        # Create an instance of the FinancialDataProcessor class
-        self.data_processor = FinancialDataProcessor()
-
+# first line: 10
     def process_data(self, dates_dateformat, Sectors, Industry_Groups, SPXT, Rf):
         # Process dates
         dates_datetime = pd.to_datetime(dates_dateformat.iloc[:, 0], errors='coerce')
@@ -43,4 +35,3 @@ class Dataprocessor:
         IG_names = [name[2:-6] if len(name) > 8 else '' for name in Industry_Groups.columns]
 
         return dates_datetime, numericDate_d, firstDayList, lastDayList, dates4plot, Sectors_returns_d, Sectors_returns_m, sector_names, Industry_Groups_returns_d, Industry_Groups_returns_m, IG_names, SPXT_returns_d, SPXT_returns_m, SPXT_Xsreturns_m, rf_d_unadjusted, rf_d, rf_d_monthly
-
