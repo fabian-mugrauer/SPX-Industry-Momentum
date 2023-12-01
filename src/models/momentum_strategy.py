@@ -168,7 +168,11 @@ class MomentumStrategy:
             total_short_weight = np.sum(np.abs(weights_short[month, :]))
 
             weights_long[month, :] /= total_long_weight
-            weights_short[month, :] /= total_short_weight
+   
+            if total_short_weight != 0:
+                weights_short[month, :] /= total_short_weight
+            else:
+                weights_short[month, :] = 0
 
             turnover_long[month], _ = self.compute_turnover(weights_long[month-1, :], weights_long[month, :], returns_m[month-1, :])
             turnover_short[month], _ = self.compute_turnover(weights_short[month-1, :], weights_short[month, :], returns_m[month-1, :])
