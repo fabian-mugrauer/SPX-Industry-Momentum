@@ -1,10 +1,18 @@
 # Project specific
 notebooks/environment_variables.env
 
+# Dont show requirements because we have a .yaml
+requirements.txt
+setup.py
+test_environment.py
+
+# Licence
+LICENSE
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-
+.Rhistory
 # C extensions
 *.so
 
