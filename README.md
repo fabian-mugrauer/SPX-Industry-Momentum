@@ -73,9 +73,9 @@ Now you can `cd` into `notebooks` inside the docker container and run [SPX_Indus
 Bloomberg
 ==============================
 
-Should you have access to a Bloomberg Terminal and you wish to use the API, this is possible with our code.
+Should you have access to a Bloomberg Terminal and you wish to use the BB API, this is possible with our code.
 
-Please install the python add-in for the BB API `xbbg` 
+Please install the python add-in for the BB API `xbbg` once the spx_industry_mom environment is activated
    ```bash
    mamba install xbbg
    ```
