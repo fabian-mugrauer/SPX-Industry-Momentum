@@ -70,6 +70,17 @@ If you want to use Docker, please follow these steps (please make sure that the 
     ```
 Now you can `cd` into `notebooks` inside the docker container and run [SPX_Industry_Momentum](notebooks/SPX_Industry_Momentum.py)
 
+Bloomberg
+==============================
+
+Should you have access to a Bloomberg Terminal and you wish to use the API, this is possible with our code.
+
+Please install the python add-in for the BB API `xbbg` 
+   ```bash
+   mamba install xbbg
+   ```
+
+Now you can set `BB = True` in [SPX_Industry_Momentum](notebooks/SPX_Industry_Momentum.ipynb) and define your wished start and enddate as well as tickers and attributes to download.
 
 
 
