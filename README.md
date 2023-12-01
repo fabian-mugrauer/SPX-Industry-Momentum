@@ -60,14 +60,21 @@ If you want to use Docker, please follow these steps (please make sure that the 
    ```bash
     docker build -t spx-industry-momentum .
     ```
-2. Run the docker container
+2. Run the docker container (allowing to access the Jupyter notebook server at localhost:888)
    ```bash
-    docker run -it --rm spx-industry-momentum /bin/bash
+    docker run -it --rm -p 8888:8888 spx-industry-momentum /bin/bash
     ```
 3. Activate the virtual environment
     ```bash
     mamba activate spx_industry_mom
     ```
+4. Start the Jupyter notebook server in the background
+    ```bash
+    jupyter notebook --ip='*' --port=8888 --no-browser --allow-root &
+    ```
+
+You can now access the Jupyter notebook server at localhost:8888 in your web browser. The server will print out a URL with a token for authentication, which you can use to access the server.
+
 Now you can `cd` into `notebooks` inside the docker container and run [SPX_Industry_Momentum](notebooks/SPX_Industry_Momentum.py)
 
 Bloomberg
