@@ -1,4 +1,4 @@
-![image](https://github.com/fabian-mugrauer/SPX-Industry-Momentum/assets/145750667/737bdf89-7bc8-45e3-a79b-e5ed4ad9c4e2)S&P500 Industry and Sector Momentum
+S&P500 Industry and Sector Momentum
 ==============================
 
 Can the academic US UMD factor be profitably implemented by US sector and industry portfolios after transaction costs? 
