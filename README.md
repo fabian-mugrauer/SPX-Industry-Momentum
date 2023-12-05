@@ -30,7 +30,7 @@ Please follow these steps to replicate our code:
 
     - Name the .env file "environment_variables.env"
     - Store the environment_variables.env file in the notebooks folder
-    - Make shure the environment_variables.env file is UTF-8 encoded
+    - Make sure the environment_variables.env file is UTF-8 encoded
 
 2. Please install the following versions and channels of mamba and conda to recreate the virtual environment in 3.:
     - Mamba 1.4.2
@@ -45,7 +45,7 @@ Please follow these steps to replicate our code:
    ```bash
    mamba install -n spx_industry_mom appnope=0.1.2 libcxx=14.0.6
    ```
-5. (Only if on Windows): If the following packages lead to conflicts please delete them from the spx_industry_mom.yaml file and rerun
+5. (Only if on Windows): If the following packages lead to conflicts, please delete them from the spx_industry_mom.yaml file and rerun
     - libgfortran5 11.3.0
     - llvm-openmp 14.0.6
     - ncurses 6.4
@@ -87,7 +87,7 @@ You can now access the Jupyter notebook server at localhost:8888 in your web bro
 
 You can then run [SPX_Industry_Momentum](notebooks/SPX_Industry_Momentum.ipynb) which is located inside the notebooks folder.
 
-If you dont want to run the Jupiter Notebook but would prefer to run a .py file inside docker, you can easily do this by following these 2 steps:
+If you don't want to run the Jupiter Notebook but would prefer to run a .py file inside docker, you can easily do this by following these 2 steps:
 1. Convert the Jupiter Notebook to a .py file (once you `cd` to notebooks folder)
    ```bash
     jupyter nbconvert --to script SPX_Industry_Momentum.ipynb
@@ -107,7 +107,7 @@ Please install the python library for the BB API `xbbg` once the spx_industry_mo
    mamba install xbbg
    ```
 
-Now you can set `BB = True` in [SPX_Industry_Momentum](notebooks/SPX_Industry_Momentum.ipynb) and define your wished start and enddate as well as tickers and attributes to download.
+Now you can set `BB = True` in [SPX_Industry_Momentum](notebooks/SPX_Industry_Momentum.ipynb) and define your wished start and end date as well as tickers and attributes to download.
 
 
 
