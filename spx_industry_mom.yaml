@@ -34,7 +34,6 @@ dependencies:
   - libbrotlicommon=1.0.9
   - libbrotlidec=1.0.9
   - libbrotlienc=1.0.9
-  - libcxx=14.0.6
   - libdeflate=1.17
   - libffi=3.4.4
   - libgfortran
