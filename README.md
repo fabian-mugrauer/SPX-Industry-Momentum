@@ -40,9 +40,9 @@ Please follow these steps to replicate our code:
    ```bash
     mamba env create -f spx_industry_mom.yaml
     ```
-4. (Only if on Mac): Please install `appnope` version 0.1.2
+4. (Only if on Mac): Please install `appnope` version 0.1.2 and `libcxx` version 14.0.6
    ```bash
-   mamba install -n spx_industry_mom appnope=0.1.2
+   mamba install -n spx_industry_mom appnope=0.1.2 libcxx=14.0.6
    ```
 5. Please activate your environment:
    ```bash
