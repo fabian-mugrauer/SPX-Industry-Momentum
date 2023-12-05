@@ -1,4 +1,4 @@
-S&P500 Industry and Sector Momentum
+![image](https://github.com/fabian-mugrauer/SPX-Industry-Momentum/assets/145750667/737bdf89-7bc8-45e3-a79b-e5ed4ad9c4e2)S&P500 Industry and Sector Momentum
 ==============================
 
 Can the academic US UMD factor be profitably implemented by US sector and industry portfolios after transaction costs? 
@@ -45,7 +45,16 @@ Please follow these steps to replicate our code:
    ```bash
    mamba install -n spx_industry_mom appnope=0.1.2 libcxx=14.0.6
    ```
-5. Please activate your environment:
+5. (Only if on Windows): If the following packages lead to conflicts please delete them from the spx_industry_mom.yaml file and rerun
+    - libgfortran5 11.3.0
+    - llvm-openmp 14.0.6
+    - ncurses 6.4
+    - readline 8.2
+   
+   ```bash
+    mamba env create -f spx_industry_mom.yaml
+    ```
+7. Please activate your environment:
    ```bash
     mamba activate spx_industry_mom
     ```
@@ -77,6 +86,16 @@ If you want to use Docker, please follow these steps (please make sure that the 
 You can now access the Jupyter notebook server at localhost:8888 in your web browser. The server will print out a URL with a token for authentication, which you can use to access the server.
 
 You can then run [SPX_Industry_Momentum](notebooks/SPX_Industry_Momentum.ipynb) which is located inside the notebooks folder.
+
+If you dont want to run the Jupiter Notebook but would prefer to run a .py file inside docker, you can easily do this by following these 2 steps:
+1. Convert the Jupiter Notebook to a .py file (once you `cd` to notebooks folder)
+   ```bash
+    jupyter nbconvert --to script SPX_Industry_Momentum.ipynb
+    ```
+2. Run the python file
+   ```bash
+    python SPX_Industry_Momentum.py
+    ```
 
 Bloomberg
 ==============================
