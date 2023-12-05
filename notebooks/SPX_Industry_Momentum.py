@@ -69,44 +69,16 @@ else:
 
 # %%
 
-# Decorate the load_data functions with joblib cache
+# Decorate the load_data function with joblib cache
 load_data_csv_cached = memory.cache(dataloader.load_data_csv)
-load_data_bb_cached = memory.cache(dataloader.load_data_BB)
-
-# Define to load with BB or with csv (BB = False = csv)
-BB = False
-
-# Define data to load with BB
-start_date = "1989-09-11"   
-end_date = "2023-11-24" 
-ticker_index = [
-'SPXT Index', 'S5INFT Index', 'S5TELS Index', 'S5CONS Index', 
-'S5COND Index', 'S5ENRS Index', 'S5FINL Index', 'S5HLTH Index', 
-'S5INDU Index', 'S5MATR Index', 'S5RLST Index', 'S5UTIL Index', 
-'S5SFTW Index', 'S5TECH Index', 'S5MEDA Index', 
-'S5SSEQX Index', 'S5DIVF Index', 'S5PHRM Index', 'S5RETL Index', 
-'S5CPGS Index', 'S5HCES Index', 'S5ENRSX Index', 'S5FDBT Index', 
-'S5BANKX Index', 'S5MATRX Index', 'S5UTILX Index', 'S5REAL Index', 
-'S5INSU Index', 'S5HOTR Index', 'S5AUCO Index', 'S5FDSR Index', 
-'S5HOUS Index', 'S5TRAN Index', 'S5COMS Index', 'S5CODU Index', 
-'S5TELSX Index' 
-]
-
-ticker_rf = ['GB03 Govt']
-
-field_index = ['TOT_RETURN_INDEX_GROSS_DVDS']
-field_rf = ['PX_LAST']
 
 # Define csv file to load
 file_name = 'Bloomberg_Download.csv'
 
-# Load the data using the cached functions
-if BB:
-    dates_dateformat, SPXT, Sectors, Rf, Industry_Groups = load_data_bb_cached(start_date, end_date, ticker_index, ticker_rf, field_index, field_rf)
-else:
-    dates_dateformat, SPXT, Sectors, Rf, Industry_Groups = load_data_csv_cached(file_path, file_name)
+# Load the data using the cached function
+dates_dateformat, SPXT, Sectors, Rf, Industry_Groups = load_data_csv_cached(file_path, file_name)
 
-# Decorate the load_data functions with joblib cache
+# Decorate the process_data functions with joblib cache
 process_data_cached = memory.cache(dataprocessor.process_data)
 
 # Process the data using the cached functions

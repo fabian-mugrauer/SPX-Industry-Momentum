@@ -97,17 +97,5 @@ If you don't want to run the Jupiter Notebook but would prefer to run a .py file
     python SPX_Industry_Momentum.py
     ```
 
-Bloomberg
-==============================
-
-Should you have access to a Bloomberg Terminal and you wish to use the BB API, this is possible with our code.
-
-Please install the python library for the BB API `xbbg` once the spx_industry_mom environment is activated
-   ```bash
-   mamba install xbbg
-   ```
-
-Now you can set `BB = True` in [SPX_Industry_Momentum](notebooks/SPX_Industry_Momentum.ipynb) and define your wished start and end date as well as tickers and attributes to download.
-
 
 
