@@ -30,6 +30,7 @@ Please follow these steps to replicate our code:
 
     - Name the .env file "environment_variables.env"
     - Store the environment_variables.env file in the notebooks folder
+    - Make shure the environment_variables.env file is UTF-8 encoded
 
 2. Please install the following versions and channels of mamba and conda to recreate the virtual environment in 3.:
     - Mamba 1.4.2
