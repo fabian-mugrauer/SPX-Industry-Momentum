@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.stats import skew, kurtosis
 from prettytable import PrettyTable
+import pandas as pd
 from src.models.momentum_strategy import MomentumStrategy  # Import the MomentumStrategy class
 
 class EvaluateStrategy:
@@ -76,25 +77,17 @@ class EvaluateStrategy:
         KurtXsReturn = kurtosis(xsReturns, axis=0)
         alphaArithmetic = annualizationFactor * betas[0]
 
-        # Create table
-        x = PrettyTable()
+        # Create a dictionary to hold the data
+        data = {
+            'Statistic': ['Total Return', 'Excess Return', 'STD', 'Sharpe Ratio', 'Min', 'Max', 'Skewness', 'Kurtosis', 'Alpha', '(T-Value)', 'Beta'],
+            'Value': [ArithmAvgTotalReturn[0], ArithmAvgXsReturn[0], StdXsReturns[0], SharpeArithmetic[0], MinXsReturn[0], MaxXsReturn[0], SkewXsReturn[0], KurtXsReturn[0], alphaGeometric[0], tvaluealpha[0], betas[0][0]]
+        }
 
-        x.title = headline
-        x.field_names = ["Statistic", "Value"]
- 
+        # Create a pandas DataFrame from the dictionary
+        df = pd.DataFrame(data)
 
-        x.add_row(["ArithmAvgTotalReturn", f"{ArithmAvgTotalReturn[0]:.3f}"])
-        x.add_row(["ArithmAvgXsReturn", f"{ArithmAvgXsReturn[0]:.3f}"])
-        x.add_row(["StdXsReturns", f"{StdXsReturns[0]:.3f}"])
-        x.add_row(["SharpeArithmetic", f"{SharpeArithmetic[0]:.3f}"])
-        x.add_row(["SharpeGeometric", f"{SharpeGeometric[0]:.3f}"])
-        x.add_row(["MinXsReturn", f"{MinXsReturn[0]:.3f}"])
-        x.add_row(["MaxXsReturn", f"{MaxXsReturn[0]:.3f}"])
-        x.add_row(["SkewXsReturn", f"{SkewXsReturn[0]:.3f}"])
-        x.add_row(["KurtXsReturn", f"{KurtXsReturn[0]:.3f}"])
-        x.add_row(["Beta", f"{betas[0][0]:.3f}"])
-
-        return (ArithmAvgTotalReturn, ArithmAvgXsReturn, StdXsReturns, SharpeArithmetic, MinXsReturn, MaxXsReturn, SkewXsReturn, KurtXsReturn, alphaArithmetic, tvaluealpha, betas, x)
+        # Return the DataFrame along with the other return values
+        return (ArithmAvgTotalReturn, ArithmAvgXsReturn, StdXsReturns, SharpeArithmetic, MinXsReturn, MaxXsReturn, SkewXsReturn, KurtXsReturn, alphaArithmetic, tvaluealpha, betas, df)
     
     def perform_robustness_check(momentum, check_type, check_range, Sectors_returns_m, rf_d_monthly, SPXT_returns_m, lookback_period_end, startMonth, nLong, nShort, trx_cost, holding_period):
         """
