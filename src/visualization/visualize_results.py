@@ -79,11 +79,11 @@ class Visualizer:
         if strategy_returns_lists_2 is not None:
             for i, returns in enumerate(strategy_returns_lists_2):
                 cumulative_returns = np.cumprod(1 + returns[start_month:]) - 1
-                ax.plot(dates[start_month:], cumulative_returns, label=labels_2[i], color=self.palette[(len(strategy_returns_lists) + i) % len(self.palette)], linestyle='--', linewidth=self.line_width)
+                ax.plot(dates[start_month:], cumulative_returns, label=labels_2[i], color=self.palette[(len(strategy_returns_lists) + i) % len(self.palette)], linestyle='-', linewidth=self.line_width)
 
         # Plot the benchmark return series
         cumulative_benchmark_returns = np.cumprod(1 + benchmark_returns[start_month:].squeeze()) - 1
-        ax.plot(dates[start_month:], cumulative_benchmark_returns, label='Benchmark', color='darkblue', linestyle='--', linewidth=self.line_width)
+        ax.plot(dates[start_month:], cumulative_benchmark_returns, label='Benchmark', color='darkblue', linestyle='-', linewidth=self.line_width)
 
         # Add labels, title, and legend
         ax.set_xlabel('Date')
