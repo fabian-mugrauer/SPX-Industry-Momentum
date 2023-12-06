@@ -88,7 +88,7 @@ class Visualizer:
         # Add labels, title, and legend
         ax.set_xlabel('Date')
         ax.set_ylabel('Cumulative Returns')
-        ax.set_title('Strategies vs. Benchmark Cumulative Returns')
+     
         ax.legend()
 
         # Add gridlines for horizontal and vertical axes
@@ -119,7 +119,7 @@ class Visualizer:
 
         plt.xlabel(check_type.replace("_", " "))
         plt.ylabel("Sharpe Ratio")
-        plt.title(f"Robustness Check: {check_type.replace('_', ' ').title()}")
+   
 
         # Add gridlines for horizontal and vertical axes
         plt.grid(axis='y')
