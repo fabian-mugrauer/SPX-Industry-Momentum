@@ -41,12 +41,12 @@ class Visualizer:
             fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(20, 6))
 
             sns.heatmap(df_weights, cmap='cividis', cbar=True, ax=ax1)
-            ax1.set_title("Heatmap of weights over months")
+            ax1.set_title("Heatmap of Sector weights over months")
             ax1.set_xlabel("Assets")
             ax1.set_ylabel("Months")
 
             sns.heatmap(df_weights_2, cmap='cividis', cbar=True, ax=ax2)
-            ax2.set_title("Heatmap of second weights over months")
+            ax2.set_title("Heatmap of Industry Group weights over months")
             ax2.set_xlabel("Assets")
             ax2.set_ylabel("Months")
 
@@ -91,6 +91,10 @@ class Visualizer:
         ax.set_title('Strategies vs. Benchmark Cumulative Returns')
         ax.legend()
 
+        # Add gridlines for horizontal and vertical axes
+        ax.grid(axis='y')
+        ax.grid(axis='x')
+
         # Format the date for monthly data
         ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m'))
 
@@ -116,5 +120,9 @@ class Visualizer:
         plt.xlabel(check_type.replace("_", " "))
         plt.ylabel("Sharpe Ratio")
         plt.title(f"Robustness Check: {check_type.replace('_', ' ').title()}")
+
+        # Add gridlines for horizontal and vertical axes
+        plt.grid(axis='y')
+        plt.grid(axis='x')
         
         return plt
