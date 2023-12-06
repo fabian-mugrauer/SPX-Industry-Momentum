@@ -93,6 +93,7 @@ class Visualizer:
         # Add gridlines for horizontal and vertical axes
         ax.grid(axis='y')
         ax.grid(axis='x')
+        ax.set_title('Strategies vs. Benchmark Cumulative Returns')
 
         # Format the date for monthly data
         ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m'))
@@ -118,6 +119,7 @@ class Visualizer:
 
         plt.xlabel(check_type.replace("_", " "))
         plt.ylabel("Sharpe Ratio")
+        plt.title("Sharpe Ratio vs. " + check_type.replace("_", " "))
    
 
         # Add gridlines for horizontal and vertical axes
