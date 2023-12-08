@@ -29,7 +29,7 @@ Please follow these steps to replicate our code:
 1. Environment variable `PROJECT_ROOT` must point to the project folder; you can set it in the .env file, and python will rely on `python-dotenv` to set it. Please: 
 
     - Name the .env file "environment_variables.env"
-    - Store the environment_variables.env file in the notebooks folder
+    - Store the environment_variables.env file in the [notebooks folder](notebooks)
     - Make sure the environment_variables.env file is UTF-8 encoded
 
 2. Please install the following versions and channels of mamba and conda to recreate the virtual environment in 3.:
