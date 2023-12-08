@@ -16,7 +16,7 @@ We provide a fully replicable code including the relevant data to replicate our 
 Requirements
 ==============================
 
-Please clone the Github repo to a folder called "SPX-Industry-Momentum" inside your project folder. Should you wish to choose another folder name this is easily changable inside the [Jupyter Notebook](notebooks/SPX_Industry_Momentum.ipynb).
+Please clone the Github repo inside your project folder. By default after cloning the folder should be called "SPX-Industry-Momentum". Should you wish to choose another folder name this is easily changable inside the [Jupyter Notebook](notebooks/SPX_Industry_Momentum.ipynb).
 ```bash
     git clone https://github.com/fabian-mugrauer/SPX-Industry-Momentum.git
 ```
