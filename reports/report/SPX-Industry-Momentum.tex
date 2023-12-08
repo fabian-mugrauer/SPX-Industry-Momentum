@@ -93,9 +93,9 @@ The paper is structured into five sections. Section 2 outlines the methodology a
 \newpage
 \section{Methodology}
 \subsection{Sector and Industry Group Momentum}
-Our aim is to exploit the robust performance of momentum strategies, as evidenced in various studies. Unlike most research focusing on single stocks, we concentrate on US GICS sectors and industry groups. This approach reduces idiosyncratic risks while still capturing significant market variations often happening on a sector or industry level. We incorporate a 10 basis point transaction cost in our strategies and examine their robustness against different cost levels. The study covers 1989 to 2023.
+We aim to exploit the robust performance of momentum strategies, as evidenced in various studies. Unlike most research focusing on single stocks, we concentrate on US GICS sectors and industry groups. This approach reduces idiosyncratic risks while still capturing significant market variations on a sector or industry level. We incorporate a 10 basis point transaction cost in our strategies and examine their robustness against different cost levels. The study covers 1989 to 2023.
 
-We implement a straightforward momentum strategy based on \cite{jegadeesh1993returns}, using a 9-month lookback and a 3-month holding period. We explore both long only and long/short setups, starting with three positions for diversification among the 11 sectors. Since there are more industry groups, one could argue that in this setting the number of holdings parameter should be higher. However, for consistency and comparison reasons, we decided to have the same parameter in both settings and investigate the behavior when changing it later in the robustness checks section. The long only strategy involves investing in the 3 sectors or industry groups which performed best over the lookback period, while the long/short strategy also shorts the worst 3 performers. While all those numbers sound arbitrary at first, we will conduct several robustness checks for all key input parameters.
+We implement a straightforward momentum strategy based on \cite{jegadeesh1993returns}, using a 9-month lookback and a 3-month holding period whereby the portfolio is rebalanced every month. We explore both long only and long/short setups, starting with three positions for diversification among the 11 sectors. Since there are more industry groups, one could argue that in this setting the number of holdings parameter should be higher. However, for consistency and comparison reasons, we decided to have the same parameter in both settings and investigate the behavior when changing it later in the robustness checks section. The long only strategy involves investing in the 3 sectors or industry groups which performed best over the lookback period, while the long/short strategy also shorts the worst 3 performers. While all those numbers sound arbitrary at first, we will conduct several robustness checks for all key input parameters.
 
 
 \subsection{Data}
@@ -112,7 +112,7 @@ We initially examined different investment methods within our  momentum framewor
     \begin{table}[H] 
         \caption{Summary Statistics Sector and Industry Group Momentum vs.~S\&P500} 
     \label{tab_02}
-    \textit{Table \ref{tab_02}} presents summary statistics, net of transaction costs, for strategies implementing long only and long/short momentum. We constructed momentum portfolios with a 3-month holding period and a 9-month lookback period. The portfolios, rebalanced monthly, take long (short) positions in the best (worst) 3 performing sectors/industry groups (IG) of the market-weighted S\&P 500. We assumed proportional transaction costs of 10 basis points. The returns shown are arithmetic average returns for the entire sample period from July 1990 to October 2023.
+    \textit{Table \ref{tab_02}} presents summary statistics, net of transaction costs, for strategies implementing long only and long/short momentum. We constructed momentum portfolios with a 3-month holding period and a 9-month lookback period. The portfolios, rebalanced monthly, take long (short) positions in the best (worst) 3 performing sectors/industry groups (IG) of the market-weighted S\&P 500. We assumed proportional transaction costs of 10 basis points. The returns shown are arithmetic average returns for the entire sample period from October 1990 to October 2023.
 
     \begin{minipage}{\linewidth}
         \centering
@@ -149,7 +149,7 @@ We initially examined different investment methods within our  momentum framewor
 \begin{figure}[H] 
         \caption{Long Only Momentum Performance vs.~S\&P500} 
     \label{fig_01}
-    \textit{Figure \ref{fig_01}} displays net cumulative returns for long only sector and industry group momentum portfolios from July 1990 to October 2023. The portfolios, with a 3-month holding period and a 9-month lookback period, are rebalanced monthly to take long positions in the best performing sectors/industry groups of the market-weighted S\&P 500. We assumed transaction costs of 10 basis points.
+    \textit{Figure \ref{fig_01}} displays net cumulative returns for long only sector and industry group momentum portfolios from October 1990 to October 2023. The portfolios, with a 3-month holding period and a 9-month lookback period, are rebalanced monthly to take long positions in the best performing sectors/industry groups of the market-weighted S\&P 500. We assumed transaction costs of 10 basis points.
 \captionsetup{justification=centering}
 \centerline{\includegraphics[width=1\textwidth]{Plots/strategy_plot.png}}
 \end{figure}
@@ -164,7 +164,7 @@ Similarly to long only portfolios weights for long/short are balanced for sector
 \begin{figure}[H] 
         \caption{Long/Short Momentum Performance vs.~Risk Free Rate} 
     \label{fig_02}
-    \textit{Figure \ref{fig_02}} displays net cumulative returns for long only and long/short sector and industry group momentum portfolios from July 1990 to October 2023. The portfolios, with a 3-month holding period and a 9-month lookback period, are rebalanced monthly to take long (short) positions in the best (worst) performing sectors/industry groups of the market-weighted S\&P 500. Proportional transaction costs of 10 basis points are assumed.
+    \textit{Figure \ref{fig_02}} displays net cumulative returns for long only and long/short sector and industry group momentum portfolios from October 1990 to October 2023. The portfolios, with a 3-month holding period and a 9-month lookback period, are rebalanced monthly to take long (short) positions in the best (worst) performing sectors/industry groups of the market-weighted S\&P 500. Proportional transaction costs of 10 basis points are assumed.
     
 \captionsetup{justification=centering}
 \centerline{\includegraphics[width=1\textwidth]{Plots/strategy_plot_long_short.png}}
@@ -180,7 +180,7 @@ When analyzing the relationship between Sharpe Ratios and the lookback period (s
         \captionsetup{justification=centering}
    \caption{Net Sharpe Ratios vs.~Lookback Period for Long Only Sector and Industry Group Momentum Portfolios}
     \label{fig_06}
-        \textit{Figure \ref{fig_06}} reports net Sharpe Ratios for long only sector and industry group momentum portfolios with a holding period of 3 months whereby the monthly rebalanced portfolio takes long positions in the 3 best performing sectors/industry. Proportional transaction costs of 10 basis points are assumed. The figure shows results for the period between July 1990 to October 2023. The x-axis represents the lookback period which can take values between 1 to 12 months.
+        \textit{Figure \ref{fig_06}} reports net Sharpe Ratios for long only sector and industry group momentum portfolios with a holding period of 3 months whereby the monthly rebalanced portfolio takes long positions in the 3 best performing sectors/industry. Proportional transaction costs of 10 basis points are assumed. The figure shows results for the period between October 1990 to October 2023. The x-axis represents the lookback period which can take values between 1 to 12 months.
     \centerline{\includegraphics[width=1\textwidth]{Plots/robustness_check_lookback.png}}
 \end{figure}
 
@@ -191,7 +191,7 @@ Secondly, we analyze the relationship between Sharpe Ratios and the holding peri
        \captionsetup{justification=centering}
    \caption{Net Sharpe Ratios vs.~Holding Period for Long Only Sector and Industry Group Momentum Portfolios}
     \label{fig_05}
-        \textit{Figure \ref{fig_05}} reports net Sharpe Ratios for long only sector and industry group momentum portfolios with a lookback period of 9 months whereby the monthly rebalanced portfolio takes long positions in the 3 best performing sectors/industry groups of the market-weighted S\&P500. Proportional transaction costs of 10 basis points are assumed. The figure shows results for the period between July 1990 to October 2023. The x-axis represents the holding period which can take values between 1 to 12 months.
+        \textit{Figure \ref{fig_05}} reports net Sharpe Ratios for long only sector and industry group momentum portfolios with a lookback period of 9 months whereby the monthly rebalanced portfolio takes long positions in the 3 best performing sectors/industry groups of the market-weighted S\&P500. Proportional transaction costs of 10 basis points are assumed. The figure shows results for the period between October 1990 to October 2023. The x-axis represents the holding period which can take values between 1 to 12 months.
     \centerline{\includegraphics[width=1\textwidth]{Plots/robustness_check_holdingperiod.png}}
 \end{figure}
 
@@ -203,7 +203,7 @@ Next, we analyze the relationship between number of holdings and Sharpe Ratios (
        \captionsetup{justification=centering}
     \caption{Net Sharpe Ratios vs.~Number of Holdings for Long Only Sector and Industry Group Momentum Portfolios} 
     \label{fig_04}
-        \textit{Figure \ref{fig_04}} displays net Sharpe Ratios returns for long only sector and industry group momentum portfolios from July 1990 to October 2023. The portfolios, with a 3-month holding period and a 9-month lookback period, are rebalanced monthly to take long positions in the best performing sectors/industry groups of the market-weighted S\&P 500. We assumed transaction costs of 10 basis points. The x-axis represents the number of holdings which can take values between 1 to 5.
+        \textit{Figure \ref{fig_04}} displays net Sharpe Ratios returns for long only sector and industry group momentum portfolios from October 1990 to October 2023. The portfolios, with a 3-month holding period and a 9-month lookback period, are rebalanced monthly to take long positions in the best performing sectors/industry groups of the market-weighted S\&P 500. We assumed transaction costs of 10 basis points. The x-axis represents the number of holdings which can take values between 1 to 5.
     \centerline{\includegraphics[width=1\textwidth]{Plots/robustness_check_holdings.png}}
 \end{figure}
 
@@ -215,7 +215,7 @@ Furthermore, given the original motivation to build implementable, i.e. profitab
            \captionsetup{justification=centering}
    \caption{Net Performance vs.~Level of Transaction Costs for Long Only Industry Group Momentum Portfolios}
     \label{fig_03}
-    \textit{Figure \ref{fig_03}} displays net cumulative returns for long only industry group momentum portfolios with a holding period of 3 months and a lookback period of 9 months whereby the monthly rebalanced portfolio takes long positions in the 3 best performing sectors of the market-weighted S\&P500. The figure shows results for the period between July 1990 to October 2023. Different line colors represent different proportional transaction costs ranging from 10 to 100 basis points.
+    \textit{Figure \ref{fig_03}} displays net cumulative returns for long only industry group momentum portfolios with a holding period of 3 months and a lookback period of 9 months whereby the monthly rebalanced portfolio takes long positions in the 3 best performing sectors of the market-weighted S\&P500. The figure shows results for the period between October 1990 to October 2023. Different line colors represent different proportional transaction costs ranging from 10 to 100 basis points.
     \centerline{\includegraphics[width=1\textwidth]{Plots/robustness_check_tc.png}}
 \end{figure} 
 
