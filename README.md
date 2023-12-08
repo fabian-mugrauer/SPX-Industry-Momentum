@@ -7,7 +7,7 @@ Momentum in literature is generally exploited by long only or long/short strateg
 
 We explore how effective momentum strategies are in the US market from 1989 to 2023 and test the strategies for robustness of various parameters, including the lookback period, the investment horizon, and the costs of transactions. Our results show an interesting pattern: while momentum strategies at the sector level are not able to generate an excess return, industry group momentum strategies do achieve an outperformance versus the overall market in the studied period.
 
-Please see [SPX_Industry_Momentum](notebooks/SPX_Industry_Momentum.ipynb) for results.
+Please see [SPX_Industry_Momentum Jupyter Notebook](notebooks/SPX_Industry_Momentum.ipynb) for ineractive results as Jupyter Notebook. Furthermore please our [report](reports/report/Report_SPX_Industry_Momentum.pdf) as well as our [beamer presentation](reports/beamer/Beamer_SPX_Industry_Momentum.pdf) (including fully reproducable latex code for both).
 
 We provide a fully replicable code including the relevant data to replicate our findings - please see below for requirements.
 
@@ -16,7 +16,7 @@ We provide a fully replicable code including the relevant data to replicate our 
 Requirements
 ==============================
 
-Please clone the Github repo to a folder called "SPX-Industry-Momentum" inside your project folder. Should you wish to choose another folder name this is easily changable inside the notebook [SPX_Industry_Momentum](notebooks/SPX_Industry_Momentum.ipynb).
+Please clone the Github repo to a folder called "SPX-Industry-Momentum" inside your project folder. Should you wish to choose another folder name this is easily changable inside the notebook [SPX_Industry_Momentum Jupyter Notebook](notebooks/SPX_Industry_Momentum.ipynb).
 ```bash
     git clone https://github.com/fabian-mugrauer/SPX-Industry-Momentum.git
 ```
@@ -59,7 +59,7 @@ Please follow these steps to replicate our code:
     mamba activate spx_industry_mom
     ```
 
- Now, [SPX_Industry_Momentum](notebooks/SPX_Industry_Momentum.ipynb) is runnable and replicates all our results.
+ Now, [SPX_Industry_Momentum Jupyter Notebook](notebooks/SPX_Industry_Momentum.ipynb) is runnable and replicates all our results.
 
 Docker
 ==============================
@@ -85,7 +85,7 @@ If you want to use Docker, please follow these steps (please make sure that the 
 
 You can now access the Jupyter notebook server at localhost:8888 in your web browser. The server will print out a URL with a token for authentication, which you can use to access the server.
 
-You can then run [SPX_Industry_Momentum](notebooks/SPX_Industry_Momentum.ipynb) which is located inside the notebooks folder.
+You can then run [SPX_Industry_Momentum Jupyter Notebook](notebooks/SPX_Industry_Momentum.ipynb) which is located inside the notebooks folder.
 
 If you don't want to run the Jupiter Notebook but would prefer to run a .py file inside docker, you can easily do this by following these 2 steps:
 1. Convert the Jupiter Notebook to a .py file (once you `cd` to notebooks folder)
