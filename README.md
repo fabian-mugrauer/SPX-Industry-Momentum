@@ -7,7 +7,7 @@ Momentum in literature is generally exploited by long only or long/short strateg
 
 We explore how effective momentum strategies are in the US market from 1989 to 2023 and test the strategies for robustness of various parameters, including the lookback period, the investment horizon, and the costs of transactions. Our results show an interesting pattern: while momentum strategies at the sector level are not able to generate an excess return, industry group momentum strategies do achieve an outperformance versus the overall market in the studied period.
 
-Please see our [Jupyter Notebook](notebooks/SPX_Industry_Momentum.ipynb) for ineractive results. Furthermore, please see our [report](reports/report/Report_SPX_Industry_Momentum.pdf) as well as our [beamer presentation](reports/beamer/Beamer_SPX_Industry_Momentum.pdf) (including fully reproducable LaTeX code for both).
+Please see our [Jupyter Notebook](notebooks/SPX_Industry_Momentum.ipynb) for interactive results. Furthermore, please see our [report](reports/report/Report_SPX_Industry_Momentum.pdf) as well as our [beamer presentation](reports/beamer/Beamer_SPX_Industry_Momentum.pdf) (including fully reproducible LaTeX code for both whereby we used Overleaf to create the report and the beamer presentation).
 
 We provide a fully replicable code including the relevant data to replicate our findings - please see below for requirements.
 
@@ -16,7 +16,7 @@ We provide a fully replicable code including the relevant data to replicate our 
 Requirements
 ==============================
 
-Please clone the Github repo inside your project folder. By default after cloning the folder should be called "SPX-Industry-Momentum". Should you wish to choose another folder name this is easily changable inside the [Jupyter Notebook](notebooks/SPX_Industry_Momentum.ipynb).
+Please clone the GitHub repo inside your project folder. By default, after cloning the folder should be called "SPX-Industry-Momentum". Should you wish to choose another folder name this is easily changeable inside the [Jupyter Notebook](notebooks/SPX_Industry_Momentum.ipynb).
 ```bash
     git clone https://github.com/fabian-mugrauer/SPX-Industry-Momentum.git
 ```
@@ -64,7 +64,7 @@ Please follow these steps to replicate our code:
 Docker
 ==============================
 
-If you want to use Docker, please follow these steps (please make sure that the `pwd` is in the folder to which you cloned this Github-Repo):
+If you want to use Docker, please follow these steps (please make sure that the `pwd` is in the folder to which you cloned this GitHub-Repo):
 
 1. Build the docker container 
    ```bash
