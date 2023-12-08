@@ -1,0 +1,38 @@
+\ProvidesPackage{mystyle}
+
+% pdf things
+\usepackage{booktabs, comment} 
+\usepackage[absolute, overlay]{textpos} 
+\usepackage{pgfpages}
+\usepackage[font=footnotesize]{caption}
+\usepackage{tikz}
+\usepackage[makeroom]{cancel}
+\usepackage{textpos}
+\usepackage{csquotes}
+
+% Math packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+
+% Theme things (Stockholm Universit)
+\definecolor{Blu}{RGB}{0, 44, 92}
+\definecolor{LightBlu}{RGB}{184, 199, 214}
+\definecolor{Viola}{RGB}{188,30,188}
+\setbeamercolor{title in head/foot}{bg=LightBlu, fg=white}
+\setbeamercolor{author in head/foot}{bg=Blu}
+\usetheme{Madrid}
+\useoutertheme{infolines}
+\usecolortheme[named=Blu]{structure}
+\usepackage{hyperref}	% Hyperlinks
+\hypersetup{colorlinks=true,linkcolor=Blu,citecolor=Viola,urlcolor=Blu,}
+\addtobeamertemplate{footline}{\hypersetup{linkcolor=white}}
+
+% Use of emojis (NOTE: LuaLaTeX compiler)
+\usepackage{emoji}
+
+% Own commands
+\newcommand{\xdot}{\dot{x}} 
+
+
