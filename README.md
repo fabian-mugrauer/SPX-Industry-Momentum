@@ -7,7 +7,7 @@ Momentum in literature is generally exploited by long only or long/short strateg
 
 We explore how effective momentum strategies are in the US market from 1989 to 2023 and test the strategies for robustness of various parameters, including the lookback period, the investment horizon, and the costs of transactions. Our results show an interesting pattern: while momentum strategies at the sector level are not able to generate an excess return, industry group momentum strategies do achieve an outperformance versus the overall market in the studied period.
 
-Please see our [Jupyter Notebook](notebooks/SPX_Industry_Momentum.ipynb) for ineractive results. Furthermore, please see our [report](reports/report/Report_SPX_Industry_Momentum.pdf) as well as our [beamer presentation](reports/beamer/Beamer_SPX_Industry_Momentum.pdf) (including fully reproducable latex code for both).
+Please see our [Jupyter Notebook](notebooks/SPX_Industry_Momentum.ipynb) for ineractive results. Furthermore, please see our [report](reports/report/Report_SPX_Industry_Momentum.pdf) as well as our [beamer presentation](reports/beamer/Beamer_SPX_Industry_Momentum.pdf) (including fully reproducable LaTeX code for both).
 
 We provide a fully replicable code including the relevant data to replicate our findings - please see below for requirements.
 
