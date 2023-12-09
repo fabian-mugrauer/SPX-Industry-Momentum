@@ -104,7 +104,7 @@ Bloomberg data (namely Total Returns of the SPX, SPX Sectors, SPX Industry Group
 
 Should you have acccess to a BLoomberg Terminal, updating the data is straight forward: 
 
-1. Open the [Excel file](data/raw/Bloomberg_Download.xlsx) and pull the newest data from BB (end date is today)
+1. Open the [Excel file](data/raw/Bloomberg_Download.xlsx) and pull the newest data from BB (end date is today by default)
 
 2. Convert the excel file to a csv file named "Bloomberg_Download.csv" stored in [data/raw/](data/raw/)
 
