@@ -1,4 +1,4 @@
-S&P500 Industry and Sector Momentum
+S&P500 Industry Momentum
 ==============================
 
 Can the academic US UMD factor be profitably implemented by US sector and industry portfolios after transaction costs? 
