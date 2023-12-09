@@ -102,7 +102,7 @@ Data
 
 Bloomberg data (namely Total Returns of the SPX, SPX Sectors, SPX Industry Groups as well as the the risk free return (yield of 3 month generic US T-bills)) are provided and will be loaded from a [csv file](data/raw/Bloomberg_Download.csv). The data is only to be used for academic research and not to be commercialized. 
 
-Should you have acccess to a BLoomberg Terminal, updating the data is straight forward: 
+Should you have acccess to a Bloomberg Terminal, updating the data is straight forward: 
 
 1. Open the [Excel file](data/raw/Bloomberg_Download.xlsx) and pull the newest data from BB (end date is today by default)
 
