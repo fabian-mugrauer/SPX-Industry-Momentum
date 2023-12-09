@@ -100,7 +100,7 @@ If you don't want to run the Jupiter Notebook but would prefer to run a .py file
 Data
 ==============================
 
-Bloomberg Data (namely Total Returns of the SPX, SPX Sectors, SPX Industry Groups as well as the the risk free return (yield of 3 month generic US T-bills)) are provided and will be loaded from a [csv file](data/raw/Bloomberg_Download.csv). The data is only to be used for academic research and not to be commercialized. 
+Bloomberg data (namely Total Returns of the SPX, SPX Sectors, SPX Industry Groups as well as the the risk free return (yield of 3 month generic US T-bills)) are provided and will be loaded from a [csv file](data/raw/Bloomberg_Download.csv). The data is only to be used for academic research and not to be commercialized. 
 
 Should you have acccess to a BLoomberg Terminal, updating the data is straight forward: 
 
